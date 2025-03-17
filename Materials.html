@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Materials - Construction Materials & Logistics</title>
+  <style>
+    :root {
+      --primary: #2A5C82;
+      --secondary: #5CB3B2;
+      --accent: #FF6B6B;
+      --dark: #2C3E50;
+      --light: #F5F6F8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: var(--light);
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.95);
+      z-index: 1000;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--primary);
+      transform: rotate(-5deg);
+      animation: titleTilt 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleTilt {
+      from { transform: rotate(-5deg); }
+      to { transform: rotate(5deg); }
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--dark);
+      text-decoration: none;
+      position: relative;
+      padding: 0.5rem;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .login-button {
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .materials-hero {
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, var(--primary), var(--secondary)),
+                  url('https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      margin-top: 80px;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .search-bar {
+      max-width: 600px;
+      margin: 2rem auto;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 1.2rem 2rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .search-bar button {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .category {
+      padding: 4rem 2rem;
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .category h3 {
+      font-size: 2rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      display: inline-block;
+      margin-bottom: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .card-image {
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .card:hover .card-image img {
+      transform: scale(1.1);
+    }
+
+    .card-content {
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .card-content h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+    }
+
+    .card-content p {
+      color: var(--dark);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .cost {
+      font-size: 1.2rem;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .geometric-overlay {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: var(--secondary);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      opacity: 0.1;
+      top: -50px;
+      right: -50px;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      
+      header h1 {
+        font-size: 1.5rem;
+      }
+      
+      .materials-hero {
+        height: 40vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CM&L</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="materials.html">Materials</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <button class="login-button" onclick="openLoginModal()">Login</button>
+    </nav>
+  </header>
+
+  <section class="materials-hero">
+    <div>
+      <h2>Premium Construction Materials</h2>
+      <div class="search-bar">
+        <input type="text" placeholder="Search materials...">
+        <button>Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Structural Materials -->
+<section class="category">
+  <div class="geometric-overlay"></div>
+  <h3>Structural Materials</h3>
+  <div class="card-container">
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Steel">
+      </div>
+      <div class="card-content">
+        <h4>Structural Steel</h4>
+        <p>High-grade steel for beams, columns, and reinforcement</p>
+        <div class="cost">sh 20,000/ton</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Cement">
+      </div>
+      <div class="card-content">
+        <h4>Portland Cement</h4>
+        <p>High-quality hydraulic cement for general construction</p>
+        <div class="cost">sh 800/bag</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1595278069441-2cf29f8005a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Bricks">
+      </div>
+      <div class="card-content">
+        <h4>Clay Bricks</h4>
+        <p>Standard construction bricks with high compressive strength</p>
+        <div class="cost">sh 20/unit</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Concrete Blocks">
+      </div>
+      <div class="card-content">
+        <h4>Concrete Blocks</h4>
+        <p>Hollow and solid blocks for load-bearing walls</p>
+        <div class="cost">sh 45/block</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+      </div>
+      <div class="card-content">
+        <h4>Structural Timber</h4>
+        <p>Grade-A hardwood and softwood beams</p>
+        <div class="cost">sh 999/linear ft</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Glass">
+      </div>
+      <div class="card-content">
+        <h4>Tempered Glass</h4>
+        <p>Safety glass for structural glazing applications</p>
+        <div class="cost">sh 2500/sq ft</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1584960445607-45655d809d3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Stone">
+      </div>
+      <div class="card-content">
+        <h4>Natural Stone</h4>
+        <p>Granite, limestone, and marble for cladding</p>
+        <div class="cost">sh 5000/sq ft</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Roofing Materials -->
+  <section class="category">
+    <div class="geometric-overlay"></div>
+    <h3>Roofing Materials</h3>
+    <div class="card-container">
+      <div class="card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Bricks">
+        </div>
+        <div class="card-content">
+          <h4>Clay tiles</h4>
+          <p>Natural clay roofing tiles</p>
+          <div class="cost">sh 25/unit</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Cement">
+        </div>
+        <div class="card-content">
+          <h4>Concrete tiles</h4>
+          <p>Heavy, moulded cement-based tiles</p>
+          <div class="cost">sh 30/unit</div>
+        </div>
+      </div>
+  
+      <div class="card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1595278069441-2cf29f8005a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Bricks">
+        </div>
+        <div class="card-content">
+          <h4>Asphalt shingles</h4>
+          <p>Flexible, waterproof roofing sheets made of fiberglass and asphalt</p>
+          <div class="cost">sh 50/unit</div>
+        </div>
+      </div>
+  
+      <div class="card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Concrete Blocks">
+        </div>
+        <div class="card-content">
+          <h4>Slate tiles</h4>
+          <p>Natural stone tiles</p>
+          <div class="cost">sh 45/unit</div>
+        </div>
+      </div>
+  
+      <div class="card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+        </div>
+        <div class="card-content">
+          <h4>Polycarbonate Sheets</h4>
+          <p>Lightweight, translucent plastic roofing</p>
+          <div class="cost">sh 1600/linear ft</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add other material categories following the same structure -->
+
+  <footer>
+    <p>&copy; 2025 CM&L • Building Better Futures</p>
+  </footer>
+
+  <script>
+    // Add your JavaScript functionality here
+  </script>
+</body>
+</html>

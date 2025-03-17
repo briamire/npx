@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Construction Materials & Logistics</title>
+  <style>
+    :root {
+      --primary: #2A5C82;
+      --secondary: #5CB3B2;
+      --accent: #FF6B6B;
+      --dark: #2C3E50;
+      --light: #F5F6F8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: var(--light);
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.95);
+      z-index: 1000;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--primary);
+      transform: rotate(-5deg);
+      animation: titleTilt 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleTilt {
+      from { transform: rotate(-5deg); }
+      to { transform: rotate(5deg); }
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--dark);
+      text-decoration: none;
+      position: relative;
+      padding: 0.5rem;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .login-button {
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .services-hero {
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, var(--primary), var(--secondary)),
+                  url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      margin-top: 80px;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .services-hero h2 {
+      font-size: 3.5rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .category {
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    .category h3 {
+      font-size: 2rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      display: inline-block;
+      margin-bottom: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    .card-content {
+      padding: 2rem;
+      position: relative;
+    }
+
+    .card-content h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .card-content p {
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .geometric-overlay {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: var(--secondary);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      opacity: 0.1;
+      top: -50px;
+      right: -50px;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .services-hero h2 {
+        font-size: 2.5rem;
+      }
+      
+      nav {
+        display: none;
+      }
+      
+      header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CM&L</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="materials.html">Materials</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <button class="login-button" onclick="openLoginModal()">Login</button>
+    </nav>
+  </header>
+
+  <section class="services-hero">
+    <h2>Premium Construction Services</h2>
+  </section>
+
+  <!-- Material Sales -->
+  <section class="category">
+    <div class="geometric-overlay"></div>
+    <h3>Material Solutions</h3>
+    <div class="card-container">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Bulk Materials">
+        <div class="card-content">
+          <h4>Bulk Material Supply</h4>
+          <p>Competitive pricing on bulk orders of cement, steel, and aggregates with guaranteed quality standards.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Specialty Materials">
+        <div class="card-content">
+          <h4>Specialty Materials</h4>
+          <p>High-performance insulation, roofing systems, and premium flooring solutions.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Eco Materials">
+        <div class="card-content">
+          <h4>Sustainable Solutions</h4>
+          <p>Eco-friendly building materials supporting LEED certification and green initiatives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logistics Services -->
+  <section class="category">
+    <div class="geometric-overlay"></div>
+    <h3>Logistics Network</h3>
+    <div class="card-container">
+      <div class="card">
+        <img src="C:\Users\Owner\Desktop\npx\src\truck.jpg" alt="Transportation">
+        <div class="card-content">
+          <h4>Nationwide Transport</h4>
+          <p>Certified fleet with real-time tracking for secure, on-time material delivery.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Warehousing">
+        <div class="card-content">
+          <h4>Smart Warehousing</h4>
+          <p>Climate-controlled storage facilities with 24/7 security monitoring.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Supply Chain">
+        <div class="card-content">
+          <h4>Supply Chain Optimization</h4>
+          <p>End-to-end management from procurement to final delivery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 CM&L • Building Better Futures</p>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Modal functions (add your modal implementation)
+  </script>
+</body>
+</html>
