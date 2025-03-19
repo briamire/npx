@@ -297,6 +297,15 @@
       header.classList.toggle('scrolled', window.scrollY > 50);
     });
 
+    // Smooth scroll for contact link
+    document.querySelector('a[href="#contact"]').addEventListener('click', function(e) {
+      // Check if the user is NOT on index.html
+      if (!window.location.href.includes('index.html')) {
+        e.preventDefault(); // Stop the default link behavior
+        window.location.href = 'index.html#contact'; // Redirect to index.html#contact
+      }
+      // If already on index.html, your existing smooth scroll will handle it
+    });
     // Modal functions (add your modal implementation)
   </script>
 </body>
