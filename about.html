@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - EC&L</title>
+  <style>
+    :root {
+      --primary: #2A5C82;
+      --secondary: #5CB3B2;
+      --accent: #FF6B6B;
+      --dark: #2C3E50;
+      --light: #F5F6F8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: var(--light);
+      overflow-x: hidden;
+    }
+
+    /* Header Styles */
+    header {
+      position: fixed;
+      width: 100%;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.95);
+      z-index: 1000;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--primary);
+      transform: rotate(-5deg);
+      animation: titleTilt 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleTilt {
+      from { transform: rotate(-5deg); }
+      to { transform: rotate(5deg); }
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--dark);
+      text-decoration: none;
+      position: relative;
+      padding: 0.5rem;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .login-button {
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* About Page Content Styles */
+    .about-hero {
+      height: 70vh;
+      background: linear-gradient(45deg, var(--primary), var(--secondary)),
+                  url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      margin-top: 80px;
+      display: flex;
+      align-items: center;
+      padding: 4rem;
+      color: white;
+    }
+
+    .about-hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-hero h1 {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .about-hero p {
+      font-size: 1.4rem;
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    .company-overview {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .overview-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .overview-text h2 {
+      color: var(--primary);
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .overview-text p {
+      color: var(--dark);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .key-differentiators {
+      background: white;
+      padding: 5rem 2rem;
+    }
+
+    .differentiator-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .differentiator-card {
+      padding: 2rem;
+      border-left: 4px solid var(--accent);
+      transition: transform 0.3s;
+    }
+
+    .differentiator-card:hover {
+      transform: translateX(10px);
+    }
+
+    .differentiator-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .core-values {
+      padding: 5rem 2rem;
+      background: var(--light);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .value-card {
+      text-align: center;
+      padding: 2rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .value-icon {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .milestones {
+      padding: 5rem 2rem;
+      background: var(--dark);
+      color: white;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background: var(--accent);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+
+    .timeline-item {
+      padding: 20px 40px;
+      position: relative;
+      width: 50%;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      right: -12px;
+      background: var(--accent);
+      border: 4px solid white;
+      top: 20px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .left {
+      left: 0;
+    }
+
+    .right {
+      left: 50%;
+    }
+
+    .timeline-content {
+      padding: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+      }
+      
+      .timeline::after {
+        left: 20px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 0;
+      }
+      
+      .timeline-item::after {
+        left: 18px;
+      }
+      
+      .right {
+        left: 0%;
+      }
+      
+      nav {
+        display: none;
+      }
+      
+      .about-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .about-hero {
+        padding: 2rem;
+        height: 60vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>EC&L</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Materials.html">Materials</a>
+      <a href="Services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="#contact">Contact</a>
+      <button class="login-button" onclick="openLoginModal()">Login</button>
+    </nav>
+  </header>
+
+  <section class="about-hero">
+    <div class="about-hero-content">
+      <h1>Building Excellence Since 1998</h1>
+      <p>As a leader in integrated construction solutions, EC&L combines material expertise with cutting-edge logistics to deliver exceptional results for projects of all scales.</p>
+    </div>
+  </section>
+
+  <section class="company-overview">
+    <div class="grid-2col">
+      <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Construction Site" class="overview-image">
+      <div class="overview-text">
+        <h2>Comprehensive Construction Solutions</h2>
+        <p>EC&L operates as a full-service construction partner, specializing in three core areas:</p>
+        <p>1. <strong>Material Procurement:</strong> Strategic partnerships with 200+ certified manufacturers worldwide ensure premium-grade materials at competitive prices.</p>
+        <p>2. <strong>Logistics Management:</strong> 150+ specialized vehicles and 500,000 sq.ft of climate-controlled warehousing enable just-in-time delivery nationwide.</p>
+        <p>3. <strong>Project Consulting:</strong> Licensed engineers provide end-to-end support from planning through completion.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="key-differentiators">
+    <div class="differentiator-grid">
+      <div class="differentiator-card">
+        <h3>Quality Assurance</h3>
+        <p>ISO 9001-certified testing with digital material traceability from source to site.</p>
+      </div>
+      <div class="differentiator-card">
+        <h3>Smart Logistics</h3>
+        <p>Real-time GPS tracking and inventory management through our SmartSite™ platform.</p>
+      </div>
+      <div class="differentiator-card">
+        <h3>Sustainability</h3>
+        <p>40% materials meet LEED standards with carbon-neutral shipping options.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="core-values">
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🏗️</div>
+        <h3>Integrity</h3>
+        <p>Ethical practices and transparent communication in all operations.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⚡</div>
+        <h3>Innovation</h3>
+        <p>15% annual efficiency gains through R&D investment.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🛡️</div>
+        <h3>Safety</h3>
+        <p>5 million work hours without lost-time accidents.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="milestones">
+    <div class="timeline">
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h4>1998 - Foundation</h4>
+          <p>Established as regional supplier in Houston, TX</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h4>2005 - Fleet Expansion</h4>
+          <p>Acquired 25 specialized transport vehicles</p>
+        </div>
+      </div>
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h4>2012 - National Reach</h4>
+          <p>Opened 12 Midwest distribution centers</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h4>2020 - Green Initiative</h4>
+          <p>Achieved ISO 14001 environmental certification</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 EC&L • Building Better Futures</p>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    function openLoginModal() {
+      // Add login modal implementation
+    }
+  </script>
+</body>
+</html>
