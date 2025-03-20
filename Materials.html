@@ -144,7 +144,7 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-
+    
     .category h3 {
       font-size: 2rem;
       background: linear-gradient(45deg, var(--primary), var(--secondary));
@@ -155,13 +155,14 @@
       margin-bottom: 2rem;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
-
+    
     .card-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(4, 1fr); /* 4 columns */
+      grid-auto-rows: minmax(300px, auto); /* Row height control */
       gap: 2rem;
     }
-
+    
     .card {
       background: white;
       border-radius: 15px;
@@ -169,53 +170,59 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       transition: all 0.3s;
       position: relative;
+      display: flex;
+      flex-direction: column; /* Better card content alignment */
     }
-
+    
     .card:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     }
-
+    
     .card-image {
-      height: 250px;
+      height: 200px; /* Reduced image height */
       position: relative;
       overflow: hidden;
+      flex-shrink: 0; /* Prevent image area from shrinking */
     }
-
+    
     .card-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.3s;
     }
-
+    
     .card:hover .card-image img {
       transform: scale(1.1);
     }
-
+    
     .card-content {
       padding: 1.5rem;
       position: relative;
+      flex-grow: 1; /* Allow content area to expand */
     }
-
+    
     .card-content h4 {
       color: var(--primary);
       margin-bottom: 0.5rem;
       font-size: 1.4rem;
     }
-
+    
     .card-content p {
       color: var(--dark);
       line-height: 1.6;
       margin-bottom: 1rem;
+      font-size: 0.9rem; /* Smaller text for compact layout */
     }
-
+    
     .cost {
       font-size: 1.2rem;
       color: var(--accent);
       font-weight: bold;
+      margin-top: auto; /* Push price to bottom */
     }
-
+    
     .geometric-overlay {
       position: absolute;
       width: 200px;
@@ -225,6 +232,29 @@
       opacity: 0.1;
       top: -50px;
       right: -50px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      .card-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .card-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .card-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .card-image {
+        height: 250px;
+      }
     }
 
     footer {
@@ -266,7 +296,7 @@
 
   <section class="materials-hero">
     <div>
-      <h2>Premium Construction Materials</h2>
+      <h2>Everlast Construction Materials and Logistics</h2>
       <div class="search-bar">
         <input type="text" placeholder="Search materials...">
         <button>Search</button>
@@ -277,7 +307,7 @@
   <!-- Structural Materials -->
 <section class="category">
   <div class="geometric-overlay"></div>
-  <h3>Structural Materials</h3>
+  <h3>Structural </h3>
   <div class="card-container">
     <div class="card">
       <div class="card-image">
@@ -285,7 +315,7 @@
       </div>
       <div class="card-content">
         <h4>Structural Steel</h4>
-        <p>High-grade steel for beams, columns, and reinforcement</p>
+        <p>Versatile, high-strength material for frameworks</p>
         <div class="cost">sh 20,000/ton</div>
       </div>
     </div>
@@ -295,8 +325,8 @@
         <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Cement">
       </div>
       <div class="card-content">
-        <h4>Portland Cement</h4>
-        <p>High-quality hydraulic cement for general construction</p>
+        <h4>Cement</h4>
+        <p>Binding material used to make concrete and mortar</p>
         <div class="cost">sh 800/bag</div>
       </div>
     </div>
@@ -306,8 +336,8 @@
         <img src="https://images.unsplash.com/photo-1595278069441-2cf29f8005a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Bricks">
       </div>
       <div class="card-content">
-        <h4>Clay Bricks</h4>
-        <p>Standard construction bricks with high compressive strength</p>
+        <h4>Steel beams</h4>
+        <p>Strong metal supports used in construction</p>
         <div class="cost">sh 20/unit</div>
       </div>
     </div>
@@ -328,8 +358,8 @@
         <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
       </div>
       <div class="card-content">
-        <h4>Structural Timber</h4>
-        <p>Grade-A hardwood and softwood beams</p>
+        <h4>Timber</h4>
+        <p>Natural wood used for framing and structures</p>
         <div class="cost">sh 999/linear ft</div>
       </div>
     </div>
@@ -339,8 +369,8 @@
         <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Glass">
       </div>
       <div class="card-content">
-        <h4>Tempered Glass</h4>
-        <p>Safety glass for structural glazing applications</p>
+        <h4>Plywood</h4>
+        <p>Engineered wood made of thin veneer layers glued together</p>
         <div class="cost">sh 2500/sq ft</div>
       </div>
     </div>
@@ -350,18 +380,51 @@
         <img src="https://images.unsplash.com/photo-1584960445607-45655d809d3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Stone">
       </div>
       <div class="card-content">
-        <h4>Natural Stone</h4>
-        <p>Granite, limestone, and marble for cladding</p>
+        <h4>Laminated veneer lumber (LVL) </h4>
+        <p>Strong engineered wood for beams and joists</p>
         <div class="cost">sh 5000/sq ft</div>
       </div>
     </div>
+
+<div class="card">
+  <div class="card-image">
+    <img src="https://images.unsplash.com/photo-1584960445607-45655d809d3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Stone">
   </div>
+  <div class="card-content">
+    <h4>Oriented strand board (OSB) </h4>
+    <p>Compressed wood strands used for sheathing</p>
+    <div class="cost">sh 5000/sq ft</div>
+  </div>
+ </div>
+
+<div class="card">
+  <div class="card-image">
+    <img src="https://images.unsplash.com/photo-1584960445607-45655d809d3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Stone">
+  </div>
+  <div class="card-content">
+    <h4>Aluminum  </h4>
+    <p>Lightweight, corrosion-resistant metal used in structures</p>
+    <div class="cost">sh 5000/sq ft</div>
+  </div>
+ </div>
+
+<div class="card">
+  <div class="card-image">
+    <img src="https://images.unsplash.com/photo-1584960445607-45655d809d3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Stone">
+  </div>
+  <div class="card-content">
+    <h4>Fiberglass </h4>
+    <p>Reinforced plastic used in insulation and structures</p>
+    <div class="cost">sh 5000/sq ft</div>
+  </div>
+</div>
 </section>
+
 
   <!-- Roofing Materials -->
   <section class="category">
     <div class="geometric-overlay"></div>
-    <h3>Roofing Materials</h3>
+    <h3>Roofing </h3>
     <div class="card-container">
       <div class="card">
         <div class="card-image">
@@ -369,7 +432,7 @@
         </div>
         <div class="card-content">
           <h4>Clay tiles</h4>
-          <p>Natural clay roofing tiles</p>
+          <p>Traditional, fire-resistant roofing made of baked clay</p>
           <div class="cost">sh 25/unit</div>
         </div>
       </div>
@@ -391,7 +454,7 @@
         </div>
         <div class="card-content">
           <h4>Asphalt shingles</h4>
-          <p>Flexible, waterproof roofing sheets made of fiberglass and asphalt</p>
+          <p>Flexible, waterproof roofing sheets made of bitumen-coated sheets</p>
           <div class="cost">sh 50/unit</div>
         </div>
       </div>
@@ -413,12 +476,578 @@
         </div>
         <div class="card-content">
           <h4>Polycarbonate Sheets</h4>
-          <p>Lightweight, translucent plastic roofing</p>
+          <p>Strong, impact-resistant plastic roofing</p>
           <div class="cost">sh 1600/linear ft</div>
-        </div>
+      </div>
+    </div>
+
+  <div class="card">
+    <div class="card-image">
+      <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+    </div>
+    <div class="card-content">
+      <h4>PVC roofing sheets </h4>
+      <p>Lightweight, waterproof plastic roofing sheets</p>
+      <div class="cost">sh 1600/linear ft</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-image">
+    <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+  </div>
+  <div class="card-content">
+    <h4>Metal roofing </h4>
+    <p>Durable, weather-resistant roofing made of steel or aluminum</p>
+    <div class="cost">sh 1600/linear ft</div>
+  </div>
+ </div>
+
+<div class="card">
+  <div class="card-image">
+    <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+  </div>
+  <div class="card-content">
+    <h4>Bitumen roofing </h4>
+    <p>Asphalt-based waterproof roofing material</p>
+    <div class="cost">sh 1600/linear ft</div>
+  </div>
+ </div>
+</section>
+
+  <!--Masonry Materials-->
+
+  <section class="category">
+  <div class="geometric-overlay"></div>
+  <h3>Masonry </h3>
+  <div class="card-container">
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Steel">
+      </div>
+      <div class="card-content">
+        <h4>Bricks</h4>
+        <p>Rectangular blocks made of clay or concrete for walls</p>
+        <div class="cost">sh 20,000/ton</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Cement">
+      </div>
+      <div class="card-content">
+        <h4>Concrete blocks </h4>
+        <p>Large, hollow or solid blocks for construction</p>
+        <div class="cost">sh 800/bag</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1595278069441-2cf29f8005a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Bricks">
+      </div>
+      <div class="card-content">
+        <h4>Cinder blocks </h4>
+        <p>Lightweight blocks made with coal cinders</p>
+        <div class="cost">sh 20/unit</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Concrete Blocks">
+      </div>
+      <div class="card-content">
+        <h4>AAC blocks </h4>
+        <p>Lightweight, aerated concrete blocks for insulation</p>
+        <div class="cost">sh 45/block</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+      </div>
+      <div class="card-content">
+        <h4>Stones</h4>
+        <p>Natural rock materials like granite or limestone for walls</p>
+        <div class="cost">sh 999/linear ft</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Glass">
+      </div>
+      <div class="card-content">
+        <h4>Stucco</h4>
+        <p>A cement-based coating for walls and ceilings </p>
+        <div class="cost">sh 2500/sq ft</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1584960445607-45655d809d3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Stone">
+      </div>
+      <div class="card-content">
+        <h4>Cabro</h4>
+        <p>Durable, interlocking concrete blocks </p>
+        <div class="cost">sh 5000/sq ft</div>
+      </div>
+   </div>
+</section>
+
+<!--Insulation Materials-->
+
+<section class="category">
+<div class="geometric-overlay"></div>
+<h3>Insulation Materials</h3>
+<div class="card-container">
+  <div class="card">
+    <div class="card-image">
+      <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Steel">
+    </div>
+    <div class="card-content">
+      <h4>Fiberglass insulation </h4>
+      <p>Glass fiber material used to reduce heat loss</p>
+      <div class="cost">sh 20,000/ton</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-image">
+      <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Cement">
+    </div>
+    <div class="card-content">
+      <h4>Mineral wool </h4>
+      <p>Fire-resistant insulation made from molten rock or slag</p>
+      <div class="cost">sh 800/bag</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-image">
+      <img src="https://images.unsplash.com/photo-1595278069441-2cf29f8005a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Bricks">
+    </div>
+    <div class="card-content">
+      <h4>Spray foam insulation  </h4>
+      <p>Expanding polyurethane foam for airtight insulation</p>
+      <div class="cost">sh 20/unit</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-image">
+      <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Concrete Blocks">
+    </div>
+    <div class="card-content">
+      <h4>Rigid foam boards  </h4>
+      <p>Solid foam sheets for thermal insulation</p>
+      <div class="cost">sh 45/block</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-image">
+      <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+    </div>
+    <div class="card-content">
+      <h4>Cellulose insulation </h4>
+      <p>Eco-friendly insulation made from recycled paper</p>
+      <div class="cost">sh 999/linear ft</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-image">
+      <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Glass">
+    </div>
+    <div class="card-content">
+      <h4>Reflective insulation </h4>
+      <p>Foil-based insulation that reflects heat </p>
+      <div class="cost">sh 2500/sq ft</div>
+    </div>
+  </div>
+</section>
+
+<!--Flooring Materials-->
+
+<section class="category">
+  <div class="geometric-overlay"></div>
+  <h3>Flooring </h3>
+  <div class="card-container">
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Steel">
+      </div>
+      <div class="card-content">
+        <h4>Porcelain tiles </h4>
+        <p>Dense, water-resistant ceramic tiles</p>
+        <div class="cost">sh 20,000/ton</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Cement">
+      </div>
+      <div class="card-content">
+        <h4>Ceramic tiles  </h4>
+        <p>Clay-based tiles for floors and walls</p>
+        <div class="cost">sh 800/bag</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1595278069441-2cf29f8005a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Bricks">
+      </div>
+      <div class="card-content">
+        <h4>Hardwood</h4>
+        <p>Durable, natural wood flooring</p>
+        <div class="cost">sh 20/unit</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Concrete Blocks">
+      </div>
+      <div class="card-content">
+        <h4>Engineered wood  </h4>
+        <p>Layered wood flooring for stability</p>
+        <div class="cost">sh 45/block</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+      </div>
+      <div class="card-content">
+        <h4>Laminate flooring </h4>
+        <p>Synthetic flooring mimicking wood or stone</p>
+        <div class="cost">sh 999/linear ft</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Glass">
+      </div>
+      <div class="card-content">
+        <h4>Vinyl flooring </h4>
+        <p>Water-resistant, flexible plastic flooring </p>
+        <div class="cost">sh 2500/sq ft</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1584960445607-45655d809d3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Stone">
+      </div>
+      <div class="card-content">
+        <h4>Marble</h4>
+        <p>Natural stone flooring with elegant patterns </p>
+        <div class="cost">sh 5000/sq ft</div>
+      </div>
+   </div>
+
+  <div class="card">
+    <div class="card-image">
+      <img src="https://images.unsplash.com/photo-1584960445607-45655d809d3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Stone">
+    </div>
+    <div class="card-content">
+      <h4>Granite</h4>
+      <p>Tough, durable stone flooring </p>
+      <div class="cost">sh 5000/sq ft</div>
+    </div>
+ </div>
+
+<div class="card">
+  <div class="card-image">
+    <img src="https://images.unsplash.com/photo-1584960445607-45655d809d3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Stone">
+  </div>
+  <div class="card-content">
+    <h4>Epoxy flooring </h4>
+    <p>Resin-based, seamless industrial flooring </p>
+    <div class="cost">sh 5000/sq ft</div>
+  </div>
+ </div>
+</section>
+
+
+<!--Wall Finishing materials-->
+
+<section class="category">
+  <div class="geometric-overlay"></div>
+  <h3>Wall Finishing </h3>
+  <div class="card-container">
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Steel">
+      </div>
+      <div class="card-content">
+        <h4>Drywall </h4>
+        <p>Lightweight gypsum boards for walls and ceilings</p>
+        <div class="cost">sh 20,000/ton</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Cement">
+      </div>
+      <div class="card-content">
+        <h4>Paints</h4>
+        <p>Liquid coatings for aesthetic and protective finishes</p>
+        <div class="cost">sh 800/bag</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1595278069441-2cf29f8005a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Bricks">
+      </div>
+      <div class="card-content">
+        <h4>Wallpaper</h4>
+        <p>Decorative paper sheets applied to walls</p>
+        <div class="cost">sh 20/unit</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Concrete Blocks">
+      </div>
+      <div class="card-content">
+        <h4>Cladding </h4>
+        <p>Protective wall coverings made of wood, metal, or plastic</p>
+        <div class="cost">sh 45/block</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+      </div>
+      <div class="card-content">
+        <h4>Fiber cement boards </h4>
+        <p>Strong, fire-resistant boards for walls</p>
+        <div class="cost">sh 999/linear ft</div>
       </div>
     </div>
   </section>
+
+  <!--Plumbing materials-->
+
+  <section class="category">
+  <div class="geometric-overlay"></div>
+  <h3>Plumbing </h3>
+  <div class="card-container">
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Steel">
+      </div>
+      <div class="card-content">
+        <h4>PVC pipes  </h4>
+        <p>Lightweight, corrosion-resistant plastic pipes</p>
+        <div class="cost">sh 20,000/ton</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Cement">
+      </div>
+      <div class="card-content">
+        <h4>Copper pipes </h4>
+        <p>Durable, heat-resistant pipes for water supply</p>
+        <div class="cost">sh 800/bag</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1595278069441-2cf29f8005a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Bricks">
+      </div>
+      <div class="card-content">
+        <h4>PEX pipes </h4>
+        <p>Flexible, plastic pipes for plumbing</p>
+        <div class="cost">sh 20/unit</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Concrete Blocks">
+      </div>
+      <div class="card-content">
+        <h4>CPVC pipes  </h4>
+        <p>Chlorinated PVC pipes for hot water systems</p>
+        <div class="cost">sh 45/block</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+      </div>
+      <div class="card-content">
+        <h4>Cast iron pipes  </h4>
+        <p>Heavy-duty pipes for drainage and sewage</p>
+        <div class="cost">sh 999/linear ft</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+      </div>
+      <div class="card-content">
+        <h4>Valves and fittings  </h4>
+        <p>Connectors and controls for plumbing systems</p>
+        <div class="cost">sh 999/linear ft</div>
+      </div>
+    </div>
+  </section>
+
+  <!--electrical materials-->
+
+  <section class="category">
+  <div class="geometric-overlay"></div>
+  <h3>Electrical Materials</h3>
+  <div class="card-container">
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Steel">
+      </div>
+      <div class="card-content">
+        <h4>Copper wiring   </h4>
+        <p>Highly conductive wiring for electrical systems</p>
+        <div class="cost">sh 20,000/ton</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Cement">
+      </div>
+      <div class="card-content">
+        <h4>Copper pipes </h4>
+        <p>Durable, heat-resistant pipes for water supply</p>
+        <div class="cost">sh 800/bag</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1595278069441-2cf29f8005a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Bricks">
+      </div>
+      <div class="card-content">
+        <h4>Aluminum wiring </h4>
+        <p>Lightweight, cost-effective electrical wiring</p>
+        <div class="cost">sh 20/unit</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Concrete Blocks">
+      </div>
+      <div class="card-content">
+        <h4>Electrical conduits  </h4>
+        <p>Protective tubing for wiring</p>
+        <div class="cost">sh 45/block</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+      </div>
+      <div class="card-content">
+        <h4>Switches & sockets  </h4>
+        <p>Electrical control devices for power access</p>
+        <div class="cost">sh 999/linear ft</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+      </div>
+      <div class="card-content">
+        <h4>Light fixtures  </h4>
+        <p>Devices that hold light bulbs</p>
+        <div class="cost">sh 999/linear ft</div>
+      </div>
+    </div>
+
+  <div class="card">
+    <div class="card-image">
+      <img src="https://images.unsplash.com/photo-1567496898669-ee935f159382?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Timber">
+    </div>
+    <div class="card-content">
+      <h4>Circuit breakers  </h4>
+      <p>Safety devices preventing electrical overloads</p>
+      <div class="cost">sh 999/linear ft</div>
+    </div>
+  </div>
+</section>
+
+<!--glass and glazing materials-->
+
+<section class="category">
+  <div class="geometric-overlay"></div>
+  <h3>Glass & Glazing</h3>
+  <div class="card-container">
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Steel">
+      </div>
+      <div class="card-content">
+        <h4>Tempered glass    </h4>
+        <p>Heat-treated glass for increased strength</p>
+        <div class="cost">sh 20,000/sq metre</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Cement">
+      </div>
+      <div class="card-content">
+        <h4>Laminated glass  </h4>
+        <p>Glass with plastic layers for safety</p>
+        <div class="cost">sh 800/sq metre</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1595278069441-2cf29f8005a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="Bricks">
+      </div>
+      <div class="card-content">
+        <h4>Tinted glass  </h4>
+        <p>Glass with color added to reduce glare</p>
+        <div class="cost">sh 200/sq metre</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Concrete Blocks">
+      </div>
+      <div class="card-content">
+        <h4>Double-glazed glass   </h4>
+        <p>Two-layered glass for insulation</p>
+        <div class="cost">sh 45/block</div>
+      </div>
+    </div>
+</section>
 
   <!-- Add other material categories following the same structure -->
 
@@ -435,9 +1064,14 @@
         e.preventDefault(); // Stop the default link behavior
         window.location.href = 'index.html#contact'; // Redirect to index.html#contact
       }
-      // If already on index.html, your existing smooth scroll will handle it
+      
     });
     // Add your JavaScript functionality here
+
   </script>
-</body>
+
+  <!-- search bar functionality in materials -->
+   <script src="script.js"></script> 
+
+ </body>
 </html>
