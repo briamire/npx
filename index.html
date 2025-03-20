@@ -30,59 +30,76 @@
       overflow-x: hidden;
     }
 
-    header {
-      position: fixed;
-      width: 100%;
-      padding: 1.5rem;
-      background: rgba(255,255,255,0.95);
-      z-index: 1000;
-      box-shadow: 0 5px 30px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    /* Header Styles */
+header {
+  position: fixed;
+  width: 100%;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px); /* Adds glass effect */
+  z-index: 1000;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0; /* Ensure header sticks to top */
+}
 
-    #rotating-title {
-      font-size: 2rem;
-      color: var(--primary);
-      transform: rotate(-5deg);
-      animation: titleTilt 3s ease-in-out infinite alternate;
-    }
+/* Animated Title */
+#rotating-title {
+  font-size: 2rem;
+  color: var(--primary);
+  animation: titleTilt 3s ease-in-out infinite alternate;
+  display: inline-block; /* Required for transform */
+}
 
-    @keyframes titleTilt {
-      from { transform: rotate(-5deg); }
-      to { transform: rotate(5deg); }
-    }
+@keyframes titleTilt {
+  from { transform: rotate(-5deg); }
+  to { transform: rotate(5deg); }
+}
 
-    nav {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
+/* Navigation Styles */
+nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
 
-    nav a {
-      color: var(--dark);
-      text-decoration: none;
-      position: relative;
-      padding: 0.5rem;
-      transition: all 0.3s;
-      font-weight: 500;
-    }
+nav a {
+  color: var(--dark);
+  text-decoration: none;
+  position: relative;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
 
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background: var(--accent);
-      transition: width 0.3s;
-    }
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
 
-    nav a:hover::after {
-      width: 100%;
-    }
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  #rotating-title {
+    font-size: 1.5rem;
+    animation: none; /* Disable animation on mobile */
+  }
+  
+  nav {
+    display: none; /* Consider hamburger menu for mobile */
+  }
+}
 
     .login-button {
       background: var(--accent);
