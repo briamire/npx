@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Construction Materials</title>
+    <style>
+        :root {
+            --primary: #2A5C82;
+            --secondary: #f5f5f5;
+            --accent: #FF6B6B;
+            --text: #333;
+            --hover: #1D4563;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .cart-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 2rem;
+        }
+
+        .cart-items {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--secondary);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .item-details {
+            flex-grow: 1;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+            color: var(--primary);
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .quantity-input {
+            width: 60px;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .remove-item {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .remove-item:hover {
+            background: #ff5252;
+        }
+
+        .cart-summary {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .total {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            background: var(--hover);
+            transform: translateY(-2px);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cart-container">
+            <div class="cart-items">
+                <h1>Your Cart</h1>
+                <div class="cart-items-list">
+                    <!-- Cart items will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <h2>Order Summary</h2>
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span class="subtotal">sh 0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span class="shipping">sh 0</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span class="total-amount">sh 0</span>
+                </div>
+                <button class="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsList = document.querySelector('.cart-items-list');
+            const subtotalElement = document.querySelector('.subtotal');
+            const shippingElement = document.querySelector('.shipping');
+            const totalElement = document.querySelector('.total-amount');
+
+            // Render cart items
+            function renderCartItems() {
+                cartItemsList.innerHTML = cart.length > 0 
+                    ? cart.map(item => `
+                        <div class="cart-item" data-id="${item.id}">
+                            <img src="${item.image}" alt="${item.name}" class="item-image">
+                            <div class="item-details">
+                                <h3>${item.name}</h3>
+                                <div class="price">sh ${item.price.toLocaleString()}</div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn minus">-</button>
+                                    <input type="number" class="quantity-input" value="${item.quantity}" min="1">
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                                <button class="remove-item">Remove</button>
+                            </div>
+                        </div>
+                    `).join('')
+                    : `<div class="empty-cart">Your cart is empty</div>`;
+
+                addEventListeners();
+                calculateTotals();
+            }
+
+            // Add event listeners
+            function addEventListeners() {
+                document.querySelectorAll('.quantity-btn').forEach(button => {
+                    button.addEventListener('click', handleQuantityChange);
+                });
+
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    input.addEventListener('change', handleQuantityInput);
+                });
+
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', handleRemoveItem);
+                });
+            }
+
+            // Handle quantity changes
+            function handleQuantityChange(e) {
+                const itemElement = this.closest('.cart-item');
+                const itemId = itemElement.dataset.id;
+                const input = itemElement.querySelector('.quantity-input');
+                let quantity = parseInt(input.value);
+
+                if (this.classList.contains('plus')) {
+                    quantity++;
+                } else if (this.classList.contains('minus') && quantity > 1) {
+                    quantity--;
+                }
+
+                input.value = quantity;
+                updateCartItem(itemId, quantity);
+            }
+
+            // Handle direct input changes
+            function handleQuantityInput(e) {
+                const itemElement = this.closest('.cart-item');
+                const itemId = itemElement.dataset.id;
+                let quantity = parseInt(this.value) || 1;
+                this.value = Math.max(quantity, 1);
+                updateCartItem(itemId, quantity);
+            }
+
+            // Handle item removal
+            function handleRemoveItem(e) {
+                const itemElement = this.closest('.cart-item');
+                const itemId = itemElement.dataset.id;
+                cart = cart.filter(item => item.id !== itemId);
+                saveCart();
+                renderCartItems();
+            }
+
+            // Update cart item
+            function updateCartItem(itemId, newQuantity) {
+                const itemIndex = cart.findIndex(item => item.id === itemId);
+                if (itemIndex > -1) {
+                    cart[itemIndex].quantity = newQuantity;
+                    saveCart();
+                    calculateTotals();
+                }
+            }
+
+            // Calculate totals
+            function calculateTotals() {
+                let subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const shipping = subtotal > 5000 ? 0 : 200;
+                const total = subtotal + shipping;
+
+                subtotalElement.textContent = `sh ${subtotal.toLocaleString()}`;
+                shippingElement.textContent = `sh ${shipping.toLocaleString()}`;
+                totalElement.textContent = `sh ${total.toLocaleString()}`;
+            }
+
+            // Save cart to localStorage
+            function saveCart() {
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
+
+            // Initial render
+            renderCartItems();
+        });
+    </script>
+</body>
+</html>
