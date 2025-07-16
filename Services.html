@@ -82,20 +82,73 @@
       width: 100%;
     }
 
-    .login-button {
-      background: var(--accent);
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
 
-    .login-button:hover {
-      transform: translateY(-2px);
-    }
+    /* Container for staggered layout */
+.staggered-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  justify-items: center;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
 
+/* Card styling */
+.card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 280px;
+  text-align: center;
+  color: #333;
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  background-color: #f5f5f5;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.link-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Center the middle card */
+.centered-card {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+/* ✅ Responsive layout for mobile screens */
+@media (max-width: 768px) {
+  .staggered-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .centered-card {
+    grid-column: auto;
+    justify-self: auto;
+  }
+}
+
+
+           
     .services-hero {
       height: 60vh;
       display: flex;
@@ -268,33 +321,80 @@
   </section>
 
   <!-- Logistics Services -->
-  <section class="category">
-    <div class="geometric-overlay"></div>
-    <h3>Logistics Network</h3>
-    <div class="card-container">
-      <div class="card">
-        <img src="Images\nationwide transport.webp" alt="Transportation">
-        <div class="card-content">
-          <h4>Nationwide Transport</h4>
-          <p>Certified fleet with real-time tracking for secure, on-time material delivery.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="Images\smart warehousing.webp" alt="Warehousing">
-        <div class="card-content">
-          <h4>Smart Warehousing</h4>
-          <p>Climate-controlled storage facilities with 24/7 security monitoring.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="Images\supply chain.webp" alt="Supply Chain">
-        <div class="card-content">
-          <h4>Supply Chain Optimization</h4>
-          <p>End-to-end management from procurement to final delivery.</p>
-        </div>
+<section class="category">
+  <div class="geometric-overlay"></div>
+  <h3>Logistics Network</h3>
+  <div class="card-container">
+    <div class="card">
+      <img src="Images/nationwide transport.webp" alt="Transportation">
+      <div class="card-content">
+        <h4>Nationwide Transport</h4>
+        <p>Certified fleet with real-time tracking for secure, on-time material delivery.</p>
       </div>
     </div>
-  </section>
+    <div class="card">
+      <img src="Images/smart warehousing.webp" alt="Warehousing">
+      <div class="card-content">
+        <h4>Smart Warehousing</h4>
+        <p>Climate-controlled storage facilities with 24/7 security monitoring.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="Images/supply chain.webp" alt="Supply Chain">
+      <div class="card-content">
+        <h4>Supply Chain Optimization</h4>
+        <p>End-to-end management from procurement to final delivery.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logistics Company Cards -->
+  <h3>Our Courier Partners</h3>
+<div class="staggered-grid">
+  <!-- Row 1: 2 Cards -->
+  <a href="https://www.dhl.com/ke-en/home.html" target="_blank" class="card link-card">
+    <img src="Images/dhl-logo.png" alt="DHL">
+    <div class="card-content">
+      <h4>DHL Kenya</h4>
+      <p>International and local parcel delivery with express options.</p>
+    </div>
+  </a>
+
+  <a href="https://www.g4s.com/en-ke/what-we-do/logistics" target="_blank" class="card link-card">
+    <img src="Images/g4s-logo.png" alt="G4S">
+    <div class="card-content">
+      <h4>G4S Logistics</h4>
+      <p>Secure parcel transport and courier services across Kenya.</p>
+    </div>
+  </a>
+
+  <!-- Row 2: Centered 1 Card -->
+  <a href="https://www.fedex.com/en-ke/home.html" target="_blank" class="card link-card centered-card">
+    <img src="Images/fedex-logo.png" alt="FedEx">
+    <div class="card-content">
+      <h4>FedEx Kenya</h4>
+      <p>Reliable global shipping and express document delivery.</p>
+    </div>
+  </a>
+
+  <!-- Row 3: 2 Cards -->
+  <a href="https://www.posta.co.ke/" target="_blank" class="card link-card">
+    <img src="Images/posta-logo.png" alt="Posta Kenya">
+    <div class="card-content">
+      <h4>Posta Kenya</h4>
+      <p>Nationwide postal and courier services with wide accessibility.</p>
+    </div>
+  </a>
+
+  <a href="https://www.sendyit.com/" target="_blank" class="card link-card">
+    <img src="Images/sendy-logo.png" alt="Sendy">
+    <div class="card-content">
+      <h4>Sendy</h4>
+      <p>Tech-driven logistics for businesses and e-commerce platforms.</p>
+    </div>
+  </a>
+</div>
+</section>
 
   <!-- Footer -->
   <footer>
