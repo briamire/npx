@@ -102,6 +102,22 @@
             border-radius: 8px;
             object-fit: cover;
             flex-shrink: 0;
+            border: 2px solid #eee;
+        }
+
+        .item-image-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #ddd, #f0f0f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+            text-align: center;
+            flex-shrink: 0;
+            border: 2px solid #eee;
         }
 
         .item-details {
@@ -347,7 +363,7 @@
                 text-align: center;
             }
             
-            .item-image {
+            .item-image, .item-image-placeholder {
                 width: 100%;
                 height: 200px;
             }
@@ -449,6 +465,28 @@
             }, 3000);
         }
 
+        // Function to get image from card element or generate placeholder
+        function getImageSrc(item) {
+            // If item has image property, use it
+            if (item.image && item.image.trim() !== '') {
+                return item.image;
+            }
+            
+            // If no image, return null to use placeholder
+            return null;
+        }
+
+        // Function to render image element
+        function renderImageElement(item) {
+            const imageSrc = getImageSrc(item);
+            
+            if (imageSrc) {
+                return `<img src="${imageSrc}" alt="${item.name}" class="item-image" onerror="this.outerHTML='<div class=\\'item-image-placeholder\\'>No Image<br>Available</div>'">`;
+            } else {
+                return `<div class="item-image-placeholder">No Image<br>Available</div>`;
+            }
+        }
+
         // Update cart display
         function updateCartDisplay() {
             const cartItemsList = document.querySelector('.cart-items-list');
@@ -487,10 +525,10 @@
                 
                 cartHTML += `
                     <div class="cart-item">
-                        <img src="${item.image}" alt="${item.name}" class="item-image">
+                        ${renderImageElement(item)}
                         <div class="item-details">
                             <div class="item-name">${item.name}</div>
-                            <div class="item-description">${item.description}</div>
+                            <div class="item-description">${item.description || 'High-quality construction material'}</div>
                             <div class="item-price">sh ${item.price} each</div>
                             <div class="quantity-controls">
                                 <button class="quantity-btn" onclick="updateQuantity('${item.id}', -1)" ${item.quantity <= 1 ? 'disabled' : ''}>−</button>
@@ -524,6 +562,32 @@
             }
             
             checkoutBtn.disabled = false;
+        }
+
+        // Function to add item to cart (called from product page)
+        function addToCart(productData) {
+            // Ensure all required properties are present
+            const item = {
+                id: productData.id || Date.now().toString(),
+                name: productData.name || 'Unknown Product',
+                price: productData.price || 0,
+                quantity: productData.quantity || 1,
+                description: productData.description || 'High-quality construction material',
+                image: productData.image || productData.imageSrc || null
+            };
+            
+            // Check if item already exists in cart
+            const existingItem = cart.find(cartItem => cartItem.id === item.id);
+            
+            if (existingItem) {
+                existingItem.quantity += item.quantity;
+            } else {
+                cart.push(item);
+            }
+            
+            saveCart();
+            updateCartDisplay();
+            showNotification(`${item.name} added to cart`);
         }
 
         // Update quantity
@@ -644,29 +708,19 @@
                 localStorage.removeItem('couponApplied');
                 updateCartDisplay();
                 
-                // Reset coupon section
-                document.getElementById('coupon-code').disabled = false;
-                document.getElementById('coupon-code').value = '';
-                document.querySelector('.apply-coupon').textContent = 'Apply';
-                document.querySelector('.apply-coupon').disabled = false;
+               
             }
         }
 
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load coupon state from localStorage
-            if (couponApplied) {
-                document.getElementById('coupon-code').disabled = true;
-                document.querySelector('.apply-coupon').textContent = 'Applied';
-                document.querySelector('.apply-coupon').disabled = true;
-            }
+        
+            
             
             updateCartDisplay();
-        });
+        
 
         // Go back to products page
         function goToProducts() {
-            window.location.href = 'products.html'; // Adjust path as needed
+            window.location.href = 'Products.html'; // Adjust path as needed
         }
 
         // Add function to handle back button
@@ -678,11 +732,15 @@
             }
         }
 
-        // Add sample data for demo purposes (remove in production)
-       
-
-        // Expose function to window for testing
+        
+         
+        // Expose functions to window for integration with product page
+        window.addToCart = addToCart;
         window.addSampleData = addSampleData;
+
+        
     </script>
+    
+    <script src="coupon-manager.js"></script>
 </body>
 </html>
