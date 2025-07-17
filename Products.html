@@ -328,11 +328,19 @@
     </button>
     <nav>
         <a href="index.html">Home</a>
-        <a href="Products.html">Products</a>
+        <a href="Products.html">Products </a>
         <a href="Services.html">Services</a>
         <a href="about.html">About</a>
         <a href="#contact">Contact</a>    
+   
+
+    <div class="cart-icon-header" onclick="goToCart()">
+    <svg viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+    </svg>
+    <span class="cart-count">0</span>
     </nav>
+</div>
 </header>
 
   <section class="materials-hero">
@@ -363,61 +371,24 @@
     </div>
 
     <div class="card">
-      <div class="card-image">
-          <img src="Images\Blue triangle cement.png" alt="Cement">
-      </div>
-      
-      
-      <div class="card-content">
-          <h4>Cement</h4>
-          <p>Binding material used to make concrete and mortar</p>
-          <div class="cost">sh 800/bag</div>
-          <button class="add-to-cart" 
-                  onclick="addToCart(event)"
-                  data-id="1"
-                  data-name="Cement"
-                  data-price="800"
-                  data-image="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
-              <svg class="cart-icon" viewBox="0 0 24 24">
-                  
-              </svg>
-              Add to Cart
-          </button>
-      </div>
-  </div>
+    <img src="Images\Blue triangle cement.png" alt="Cement" class="card-image">
+    <div class="card-content">
+        <h4>Product Name</h4>
+        <p>Product description</p>
+        <div class="cost">sh 800/bag</div>
+        <button class="add-to-cart" 
+                data-image="image-url">
+            <svg class="cart-icon" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
+            Add to Cart
+        </button>
+    </div>
+</div>
 
   <script>
-  // Cart handling functions
-let cartData = JSON.parse(localStorage.getItem('cart')) || [];
+      
 
-function addToCart(event) {
-    event.preventDefault();
-    
-    // Get product details from data attributes
-    const button = event.currentTarget;
-    const product = {
-        id: button.dataset.id,
-        name: button.dataset.name,
-        price: parseFloat(button.dataset.price),
-        quantity: 1,
-        image: button.dataset.image
-    };
-
-    // Check if item exists in cart
-    const existingItem = cartData.find(item => item.id === product.id);
-    
-    if (existingItem) {
-        existingItem.quantity++;
-    } else {
-        cartData.push(product);
-    }
-
-    // Update localStorage
-    localStorage.setItem('cart', JSON.stringify(cartData));
-    
-    // Redirect to cart page
-    window.location.href = 'Cart.html';
-}
 </script>
 
     
@@ -1341,6 +1312,7 @@ function addToCart(event) {
         <h4>Gravel</h4>
         <p>Small rock fragments for roadbeds</p>
         <div class="cost">sh 45/block</div>
+
         <!-- Modern styled Add to Cart button redirecting to add.html -->
         <button class="add-to-cart" onclick="window.location.href='add.html'">Add to Cart</button>
       </div>
@@ -1397,5 +1369,6 @@ function addToCart(event) {
   <!-- search bar functionality in materials -->
    <script src="script.js"></script> 
 
+  
  </body>
 </html>
