@@ -186,7 +186,7 @@ function showButtonFeedback(button) {
 
 // Go to cart page
 function goToCart() {
-    window.location.href = 'cart.html';
+    window.location.href = 'Cart.html';
 }
 
 // Initialize when DOM loads
