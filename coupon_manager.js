@@ -1,4 +1,8 @@
 // coupon-manager.js - Advanced Coupon Generation and Management System
+console.log('✅ coupon_manager.js file is loading...');
+
+
+
 
 class CouponManager {
     constructor() {
@@ -322,3 +326,6 @@ if (Object.keys(couponManager.coupons).length === 0) {
     createSampleCoupons();
     console.log('Initial sample coupons created automatically!');
 }
+
+console.log('✅ coupon_manager.js file finished loading!');
+console.log('✅ couponManager available:', typeof window.couponManager);
