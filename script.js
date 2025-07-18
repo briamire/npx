@@ -349,3 +349,55 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Cart count:', cart.reduce((total, item) => total + item.quantity, 0));
     };
 });
+
+// Hamburger Menu Initialization Function
+function initHamburgerMenu() {
+    const hamburgerBtn = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('nav');
+    
+    if (!hamburgerBtn || !navMenu) {
+        console.warn('Hamburger menu elements not found');
+        return;
+    }
+    
+    // Toggle hamburger menu
+    hamburgerBtn.addEventListener('click', function() {
+        hamburgerBtn.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on nav links (mobile)
+    const navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+    
+    // Close menu when clicking outside (mobile)
+    document.addEventListener('click', function(e) {
+        if (!hamburgerBtn.contains(e.target) && !navMenu.contains(e.target)) {
+            hamburgerBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+    
+    // Close menu when window is resized to desktop view
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            hamburgerBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initHamburgerMenu();
+});
+
+// Alternative manual initialization function (if needed)
+function startHamburgerMenu() {
+    initHamburgerMenu();
+}
