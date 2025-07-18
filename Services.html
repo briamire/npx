@@ -615,58 +615,7 @@
     <p>&copy; 2025 EC&L • Building Better Futures</p>
   </footer>
 
-  <script>
-    // Header scroll effect
-    window.addEventListener('scroll', () => {
-      const header = document.querySelector('header');
-      header.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Hamburger menu functionality
-    const hamburger = document.querySelector('.hamburger');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const closeBtn = document.querySelector('.close-btn');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-    });
-
-    closeBtn.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      mobileMenu.classList.remove('active');
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('active');
-      }
-    });
-
-    // Smooth scroll for contact link
-    document.querySelector('a[href="#contact"]').addEventListener('click', function(e) {
-      // Check if the user is NOT on index.html
-      if (!window.location.href.includes('index.html')) {
-        e.preventDefault(); // Stop the default link behavior
-        window.location.href = 'index.html#contact'; // Redirect to index.html#contact
-      }
-      // If already on index.html, your existing smooth scroll will handle it
-    });
-
-    // Handle contact links in mobile menu
-    document.querySelectorAll('.mobile-menu a[href="#contact"]').forEach(link => {
-      link.addEventListener('click', function(e) {
-        if (!window.location.href.includes('index.html')) {
-          e.preventDefault();
-          window.location.href = 'index.html#contact';
-        }
-        // Close mobile menu
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('active');
-      });
-    });
-  </script>
+  <script> src="script.js"</script>
+  
 </body>
 </html>
