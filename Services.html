@@ -26,7 +26,7 @@
     }
 
     header {
-      position: fixed;
+       position: fixed;
       width: 100%;
       padding: 1rem;
       background: rgba(255,255,255,0.95);
@@ -82,215 +82,127 @@
       width: 100%;
     }
 
-    .hamburger {
-    display: none;
-    padding: 1rem;
-    cursor: pointer;
-    background: transparent;
-    border: 0;
-    z-index: 1001;
-}
-
-.hamburger-box {
-    width: 30px;
-    height: 24px;
-    display: inline-block;
-    position: relative;
-}
-
-.hamburger-inner {
-    width: 100%;
-    height: 3px;
-    background: var(--primary);
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: transform 0.3s, background 0.3s;
-}
-
-.hamburger-inner::before,
-.hamburger-inner::after {
-    content: '';
-    width: 100%;
-    height: 3px;
-    background: var(--primary);
-    position: absolute;
-    left: 0;
-    transition: transform 0.3s;
-}
-
-.hamburger-inner::before { top: -10px; }
-.hamburger-inner::after { top: 10px; }
-
-/* Active Hamburger State */
-.hamburger.active .hamburger-inner {
-    background: transparent;
-}
-.hamburger.active .hamburger-inner::before {
-    transform: translateY(10px) rotate(45deg);
-}
-.hamburger.active .hamburger-inner::after {
-    transform: translateY(-10px) rotate(-45deg);
-}
-
-/* Mobile Display */
-@media (max-width: 768px) {
-    .hamburger {
-        display: block !important;
-        order: 3;
-    }
-    
-    nav {
-        order: 2;
-        position: fixed;
-        top: 80px;
-        right: -100%;
-        width: 280px;
-        height: calc(100vh - 80px);
-        background: rgba(255,255,255,0.98);
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 2rem;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.15);
-        transition: right 0.3s ease;
-        z-index: 999;
-    }
-    
-    nav.active {
-        right: 0;
-    }
-    
-    nav a {
-        width: 100%;
-        padding: 1rem 0;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-        font-size: 1.1rem;
-        color: var(--dark);
-        text-decoration: none;
-    }
-    
-    nav a:hover {
-        color: var(--primary);
-    }
-}
 
     .delivery-modes {
-      padding: 2rem;
-      background-color: #f9f9f9;
-      text-align: center;
-    }
+  padding: 2rem;
+  background-color: #f9f9f9;
+  text-align: center;
+}
 
-    .delivery-modes h3 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: #333;
-    }
+.delivery-modes h3 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
 
-    .delivery-card-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+.delivery-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
 
-    .delivery-card {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      padding: 1.5rem;
-      width: 280px;
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-    }
+.delivery-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  width: 280px;
+  transition: transform 0.3s ease;
+}
 
-    .delivery-card:hover {
-      transform: translateY(-5px);
-    }
+.delivery-card:hover {
+  transform: translateY(-5px);
+}
 
-    .delivery-card img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 1rem;
-    }
+.delivery-card img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+}
 
-    .delivery-card h4 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-      color: #0066cc;
-    }
+.delivery-card h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #0066cc;
+}
 
-    .delivery-card p {
-      font-size: 0.95rem;
-      color: #555;
-      margin-bottom: 0.8rem;
-    }
+.delivery-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.8rem;
+}
 
-    .vehicle-used {
-      display: block;
-      font-size: 0.9rem;
-      color: #888;
-      font-style: italic;
-    }
+.vehicle-used {
+  display: block;
+  font-size: 0.9rem;
+  color: #888;
+  font-style: italic;
+}
 
-    /* Updated flexbox layout for courier partners */
-    .staggered-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
+    /* Container for staggered layout */
+.staggered-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  justify-items: center;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
 
-    /* Card styling */
-    .card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-      width: 300px;
-      text-align: center;
-      color: #333;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
+/* Card styling */
+.card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 380px;
+  text-align: center;
+  color: #333;
+  text-decoration: none;
+}
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
+.card:hover {
+  transform: translateY(-5px);
+}
 
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      background-color: #f5f5f5;
-    }
+.card img {
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+  background-color: #f5f5f5;
+}
 
-    .card-content {
-      padding: 1rem;
-    }
+.card-content {
+  padding: 1rem;
+}
 
-    .link-card {
-      text-decoration: none;
-      color: inherit;
-    }
+.link-card {
+  text-decoration: none;
+  color: inherit;
+}
 
-    /* Responsive layout for mobile screens */
-    @media (max-width: 768px) {
-      .staggered-grid {
-        justify-content: center;
-      }
-      
-      .card {
-        width: 280px;
-      }
-    }
+/* Center the middle card */
+.centered-card {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+/* ✅ Responsive layout for mobile screens */
+@media (max-width: 768px) {
+  .staggered-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .centered-card {
+    grid-column: auto;
+    justify-self: auto;
+  }
+}
            
     .services-hero {
       height: 60vh;
@@ -314,14 +226,14 @@
     }
 
     .category {
-      padding: 4rem 2rem;
+     padding: 4rem 2rem;
       position: relative;
       max-width: 1200px;
       margin: 0 auto;
     }
 
     .category h3 {
-      font-size: 2rem;
+     font-size: 2rem;
       background: linear-gradient(45deg, var(--primary), var(--secondary));
       color: white;
       padding: 1rem 2rem;
@@ -332,51 +244,47 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
-    /* Updated flexbox layout for main card containers */
     .card-container {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
-      justify-content: center;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    .card-container .card {
+    .card {
       background: white;
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       transition: all 0.3s;
       position: relative;
-      width: 350px;
-      flex-shrink: 0;
     }
 
-    .card-container .card:hover {
+    .card:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     }
 
-    .card-container .card img {
+    .card img {
       width: 100%;
       height: 250px;
       object-fit: cover;
       border-bottom: 4px solid var(--accent);
     }
 
-    .card-container .card-content {
+    .card-content {
       padding: 2rem;
       position: relative;
     }
 
-    .card-container .card-content h4 {
+    .card-content h4 {
       color: var(--primary);
       margin-bottom: 1rem;
       font-size: 1.4rem;
     }
 
-    .card-container .card-content p {
+    .card-content p {
       color: var(--dark);
       line-height: 1.6;
     }
@@ -410,16 +318,8 @@
         display: none;
       }
       
-      .hamburger {
-        display: flex;
-      }
-      
       header h1 {
         font-size: 1.5rem;
-      }
-      
-      .card {
-        width: 300px;
       }
     }
   </style>
@@ -440,18 +340,7 @@
         <a href="#contact">Contact</a>
         
     </nav>
-   
 </header>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu">
-    <button class="close-btn">&times;</button>
-    <a href="index.html">Home</a>
-    <a href="Products.html">Products</a>
-    <a href="Services.html">Services</a>
-    <a href="about.html">About</a>
-    <a href="#contact">Contact</a>
-  </div>
 
   <section class="services-hero">
     <h2>Premium Construction Services</h2>
@@ -518,6 +407,7 @@
   <!-- Logistics Company Cards -->
   <h3>Our Courier Partners</h3>
 <div class="staggered-grid">
+  <!-- Row 1: 2 Cards -->
   <a href="https://www.dhl.com/ke-en/home.html" target="_blank" class="card link-card">
     <img src="Images\dhl.webp" alt="DHL">
     <div class="card-content">
@@ -534,7 +424,8 @@
     </div>
   </a>
 
-  <a href="https://www.fedex.com/en-ke/home.html" target="_blank" class="card link-card">
+  <!-- Row 2: Centered 1 Card -->
+  <a href="https://www.fedex.com/en-ke/home.html" target="_blank" class="card link-card centered-card">
     <img src="Images\FEDEX.webp" alt="FedEx">
     <div class="card-content">
       <h4>FedEx Kenya</h4>
@@ -542,6 +433,7 @@
     </div>
   </a>
 
+  <!-- Row 3: 2 Cards -->
   <a href="https://www.posta.co.ke/" target="_blank" class="card link-card">
     <img src="Images\posta-kenya.webp" alt="Posta Kenya">
     <div class="card-content">
@@ -615,7 +507,23 @@
     <p>&copy; 2025 EC&L • Building Better Futures</p>
   </footer>
 
-  <script> src="script.js"</script>
-  
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Smooth scroll for contact link
+    document.querySelector('a[href="#contact"]').addEventListener('click', function(e) {
+      // Check if the user is NOT on index.html
+      if (!window.location.href.includes('index.html')) {
+        e.preventDefault(); // Stop the default link behavior
+        window.location.href = 'index.html#contact'; // Redirect to index.html#contact
+      }
+      // If already on index.html, your existing smooth scroll will handle it
+    });
+    // Modal functions (add your modal implementation)
+  </script>
 </body>
 </html>
