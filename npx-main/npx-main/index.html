@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Construction Materials & Logistics</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2A5C82;
+      --secondary: #5CB3B2;
+      --accent: #FF6B6B;
+      --dark: #2C3E50;
+      --light: #F5F6F8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+   html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--light);
+    overflow-x: hidden;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255,255,255,0.95);
+    z-index: 1000;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    top: 0;
+    backdrop-filter: blur(10px);
+}
+
+#rotating-title {
+    font-size: 1.5rem;
+    color: var(--primary);
+    transform: rotate(-5deg);
+    animation: titleTilt 3s ease-in-out infinite alternate;
+    margin: 0 1rem;
+    display: inline-block;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    padding: 1rem;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    z-index: 1001;
+}
+
+.hamburger-box {
+    width: 30px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+}
+
+.hamburger-inner {
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.hamburger-inner::before,
+.hamburger-inner::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+    position: absolute;
+    left: 0;
+    transition: transform 0.2s;
+}
+
+.hamburger-inner::before { top: -8px; }
+.hamburger-inner::after { top: 8px; }
+
+/* Active Hamburger State */
+.hamburger.active .hamburger-inner {
+    background: transparent;
+}
+.hamburger.active .hamburger-inner::before {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active .hamburger-inner::after {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.5rem;
+    transition: right 0.3s ease;
+}
+
+nav a {
+    color: var(--dark);
+    text-decoration: none;
+    position: relative;
+    padding: 0.25rem 0.5rem;
+    transition: all 0.3s;
+    font-weight: 500;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: var(--accent);
+    transition: width 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.cart-icon:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        z-index: 1002;
+    }
+
+    nav {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 100%;
+        max-width: 300px;
+        height: calc(100vh - 80px);
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        transition: right 0.3s ease;
+    }
+
+    nav.active {
+        right: 0;
+    }
+
+    nav a {
+        width: 100%;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        font-size: 1rem;
+    }
+
+    #rotating-title {
+        animation: none;
+    }
+}
+
+@keyframes titleTilt {
+    from { transform: rotate(-5deg); }
+    to { transform: rotate(5deg); }
+}
+
+/* Mobile Optimization */
+@media (max-width: 480px) {
+    header {
+        padding: 0.5rem;
+    }
+    
+    #rotating-title {
+        font-size: 1.2rem;
+        margin: 0 0.5rem;
+    }
+    
+    nav {
+        gap: 0.75rem;
+        padding: 0.25rem;
+    }
+    
+    nav a {
+        font-size: 0.8rem;
+        padding: 0.25rem;
+    }
+}
+
+/* Add this CSS to fix the hamburger menu display */
+
+/* Ensure hamburger is visible on mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block !important;
+        order: 3; /* Place hamburger at the end */
+    }
+    
+    #rotating-title {
+        order: 1; /* Place title first */
+    }
+    
+    nav {
+        order: 2;
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 280px;
+        height: calc(100vh - 80px);
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.15);
+        transition: right 0.3s ease;
+        z-index: 999;
+    }
+    
+    nav.active {
+        right: 0;
+    }
+    
+    nav a {
+        width: 100%;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        font-size: 1.1rem;
+        color: var(--dark);
+        text-decoration: none;
+    }
+    
+    nav a:hover {
+        color: var(--primary);
+    }
+}
+
+/* Make hamburger lines more visible */
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+    height: 3px;
+    background: var(--primary);
+}
+
+.hamburger-inner::before { top: -10px; }
+.hamburger-inner::after { top: 10px; }
+
+/* Improve active state */
+.hamburger.active .hamburger-inner::before {
+    transform: translateY(10px) rotate(45deg);
+}
+.hamburger.active .hamburger-inner::after {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 80px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.hero:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+                url('Images/landing.webp');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    transform: scale(0.6);
+    transform-origin: center;
+    animation: dramaticZoomIn 3s ease-out forwards;
+    transition: transform 0.3s ease;
+}
+
+.hero:hover::before {
+    transform: scale(1.08);
+}
+
+@keyframes dramaticZoomIn {
+    0% {
+        transform: scale(0.6);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.02);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeInText 0.8s ease-out 2.5s forwards;
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    opacity: 0;
+    transform: scale(0.7);
+    animation: bounceIn 0.8s ease-out 3s forwards;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    80% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.cta-button:hover {
+    transform: scale(1.1);
+    filter: brightness(85%);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 4rem 2rem;
+    background: white;
+}
+
+.service-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+
+.service-content {
+    padding: 2rem;
+}
+
+.service-content h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.about-section {
+    padding: 6rem 2rem;
+    background: var(--light);
+    position: relative;
+    clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+}
+
+.geometric-overlay {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: var(--secondary);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    opacity: 0.1;
+    top: -150px;
+    right: -150px;
+}
+
+.contact-section {
+    padding: 6rem 2rem;
+    position: relative;
+    background: var(--light);
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.contact {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 2rem;
+    background: #f5f5f5;
+    overflow: hidden;
+}
+
+.contact .content {
+    z-index: 1;
+    max-width: 600px;
+}
+
+.contact-info h2,
+.contact-form h2 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.info-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.info-card i {
+    font-size: 1.5rem;
+    color: var(--accent);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.social-links a:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+}
+
+.contact-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--light);
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--secondary);
+    outline: none;
+}
+
+footer {
+    background: var(--dark);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 2.5rem;
+    }
+
+    header {
+        padding: 1rem;
+    }
+
+    #rotating-title {
+        font-size: 1.5rem;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .geometric-overlay {
+        display: none;
+    }
+}
+
+  /* ============================================================
+     GYPSUM SOLUTIONS SECTION
+  ============================================================ */
+  .gypsum-section {
+    background: linear-gradient(160deg, #0f1f2e 0%, #1a3549 50%, #0e2233 100%);
+    padding: 6rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gypsum-section::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: -60px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(195,155,82,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .gypsum-section::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(92,179,178,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .gypsum-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gypsum-eyebrow {
+    display: inline-block;
+    background: linear-gradient(90deg, #c39b52, #e8c97a);
+    color: #0f1f2e;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 0.4rem 1.4rem;
+    border-radius: 30px;
+    margin-bottom: 1.2rem;
+  }
+
+  .gypsum-header h2 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: #ffffff;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .gypsum-header h2 span {
+    background: linear-gradient(90deg, #c39b52, #e8c97a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gypsum-header p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.1rem;
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .gypsum-badge-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+  }
+
+  .gypsum-badge {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(195,155,82,0.35);
+    color: #e8c97a;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 0.35rem 1rem;
+    border-radius: 20px;
+  }
+
+  /* Category Cards */
+  .gypsum-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.8rem;
+    max-width: 1300px;
+    margin: 0 auto 3.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gypsum-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(195,155,82,0.2);
+    border-radius: 20px;
+    padding: 2rem 1.8rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gypsum-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #c39b52, #e8c97a, #c39b52);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .gypsum-card:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(195,155,82,0.5);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  }
+
+  .gypsum-card:hover::before {
+    opacity: 1;
+  }
+
+  .gypsum-card-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, rgba(195,155,82,0.2), rgba(195,155,82,0.05));
+    border: 1px solid rgba(195,155,82,0.4);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .gypsum-card h3 {
+    color: #e8c97a;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 0.3px;
+  }
+
+  .gypsum-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .gypsum-card ul li {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.9rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    line-height: 1.5;
+  }
+
+  .gypsum-card ul li:last-child {
+    border-bottom: none;
+  }
+
+  .gypsum-card ul li::before {
+    content: '▸';
+    color: #c39b52;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  /* Project Showcase */
+  .gypsum-projects {
+    max-width: 1300px;
+    margin: 0 auto 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gypsum-projects-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .gypsum-projects-header h3 {
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .gypsum-projects-header p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.95rem;
+  }
+
+  .gypsum-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .gypsum-project-tile {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 4/3;
+    background: rgba(255,255,255,0.05);
+    border: 1px dashed rgba(195,155,82,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .gypsum-project-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0; left: 0;
+    transition: transform 0.4s;
+  }
+
+  .gypsum-project-tile:hover img {
+    transform: scale(1.06);
+  }
+
+  .gypsum-project-tile:hover {
+    border-color: rgba(195,155,82,0.6);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  }
+
+  .gypsum-project-placeholder {
+    text-align: center;
+    z-index: 1;
+  }
+
+  .gypsum-project-placeholder .ph-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    opacity: 0.5;
+  }
+
+  .gypsum-project-placeholder p {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .gypsum-project-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(10,25,40,0.9));
+    padding: 1.5rem 1.2rem 1rem;
+    z-index: 2;
+  }
+
+  .gypsum-project-overlay h4 {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+
+  .gypsum-project-overlay span {
+    color: #e8c97a;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* CTA */
+  .gypsum-cta-row {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gypsum-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, #c39b52, #e8c97a);
+    color: #0f1f2e;
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 1rem 2.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+    box-shadow: 0 8px 30px rgba(195,155,82,0.35);
+    border: none;
+    cursor: pointer;
+    margin: 0.5rem;
+  }
+
+  .gypsum-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(195,155,82,0.5);
+  }
+
+  .gypsum-cta-secondary {
+    display: inline-block;
+    background: transparent;
+    color: #e8c97a;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 1rem 2.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 2px solid rgba(195,155,82,0.5);
+    transition: all 0.3s;
+    margin: 0.5rem;
+  }
+
+  .gypsum-cta-secondary:hover {
+    background: rgba(195,155,82,0.1);
+    border-color: #e8c97a;
+    transform: translateY(-3px);
+  }
+
+  /* ============================================================
+     WHO WE SERVE SECTION
+  ============================================================ */
+  .serve-section {
+    padding: 5rem 2rem;
+    background: #ffffff;
+    position: relative;
+  }
+
+  .serve-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), #c39b52);
+  }
+
+  .serve-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .serve-eyebrow {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 0.4rem 1.4rem;
+    border-radius: 30px;
+    margin-bottom: 1rem;
+  }
+
+  .serve-header h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--dark);
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+  }
+
+  .serve-header p {
+    color: #6b7c93;
+    font-size: 1.05rem;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .serve-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .serve-card {
+    background: var(--light);
+    border-radius: 18px;
+    padding: 2rem 1.8rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .serve-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    transition: height 0.35s ease;
+    z-index: 0;
+  }
+
+  .serve-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(42,92,130,0.15);
+    border-color: transparent;
+  }
+
+  .serve-card:hover::after {
+    height: 4px;
+  }
+
+  .serve-card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .serve-card h3 {
+    color: var(--dark);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .serve-card p {
+    color: #6b7c93;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Fade-in on scroll */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .gypsum-section { padding: 4rem 1rem 3rem; }
+    .gypsum-grid { grid-template-columns: 1fr; }
+    .gypsum-projects-grid { grid-template-columns: 1fr; }
+    .serve-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .serve-grid { grid-template-columns: 1fr; }
+    .gypsum-badge-row { gap: 0.5rem; }
+  }
+  
+</style>
+</head>
+<body>
+  <header>
+    <h1 id="rotating-title">EC&L</h1>
+    <button class="hamburger">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#gypsum">Gypsum</a>
+        <a href="Products.html">Products</a>
+        <a href="Services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="cart-icon-header" onclick="goToCart()">
+    <svg viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+    </svg>
+    <span class="cart-count">0</span>
+    </nav>
+</div>
+</header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Everlast Construction & Logistics </h2>
+      <p>Building Foundations for tommorrow</p>
+      <a href="Products.html" class="cta-button">Explore Inventory</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GYPSUM SOLUTIONS — PRIMARY SECTION
+  ============================================================ -->
+  <section id="gypsum" class="gypsum-section">
+    <div class="gypsum-header fade-in-up">
+      <span class="gypsum-eyebrow">Gypsum Solutions</span>
+      <h2>Transform Your Space With<br><span>Modern Gypsum Solutions</span></h2>
+      <p>Kenya's contractors, developers, homeowners and interior designers trust us for complete gypsum systems — from boards and accessories to full ceiling installation. Specified in government tender documents. Delivered to your site.</p>
+      <div class="gypsum-badge-row">
+        <span class="gypsum-badge">✓ Contractors</span>
+        <span class="gypsum-badge">✓ Developers</span>
+        <span class="gypsum-badge">✓ Homeowners</span>
+        <span class="gypsum-badge">✓ Interior Designers</span>
+        <span class="gypsum-badge">✓ Government Tenders</span>
+      </div>
+    </div>
+
+    <!-- Category Cards -->
+    <div class="gypsum-grid">
+
+      <!-- Gypsum Boards -->
+      <div class="gypsum-card fade-in-up">
+        <div class="gypsum-card-icon">🧱</div>
+        <h3>Gypsum Boards</h3>
+        <ul>
+          <li>Standard gypsum boards (9.5mm &amp; 12.5mm)</li>
+          <li>Moisture-resistant boards (green board)</li>
+          <li>Fire-resistant boards (Type X)</li>
+          <li>Impact-resistant boards</li>
+          <li>Acoustic gypsum boards</li>
+          <li>Foil-backed thermal boards</li>
+        </ul>
+      </div>
+
+      <!-- Ceiling Systems -->
+      <div class="gypsum-card fade-in-up">
+        <div class="gypsum-card-icon">🏛️</div>
+        <h3>Ceiling Systems</h3>
+        <ul>
+          <li>Flat / plain ceilings</li>
+          <li>Suspended grid ceilings</li>
+          <li>Bulkhead ceiling designs</li>
+          <li>Coffered ceilings</li>
+          <li>Modern decorative ceilings</li>
+          <li>Custom shapes &amp; profiles</li>
+        </ul>
+      </div>
+
+      <!-- Gypsum Accessories -->
+      <div class="gypsum-card fade-in-up">
+        <div class="gypsum-card-icon">🔩</div>
+        <h3>Gypsum Accessories</h3>
+        <ul>
+          <li>Metal studs &amp; tracks</li>
+          <li>Furring channels</li>
+          <li>Drywall screws &amp; fasteners</li>
+          <li>Jointing compounds</li>
+          <li>Fibreglass joint tape</li>
+          <li>Cornices &amp; access panels</li>
+        </ul>
+      </div>
+
+      <!-- Gypsum Design & Installation -->
+      <div class="gypsum-card fade-in-up">
+        <div class="gypsum-card-icon">📐</div>
+        <h3>Gypsum Design &amp; Installation</h3>
+        <ul>
+          <li>Site measurements &amp; quotation</li>
+          <li>Ceiling layout design</li>
+          <li>Professional installation teams</li>
+          <li>Commercial &amp; residential fit-out</li>
+          <li>Government &amp; institutional supply</li>
+          <li>Post-installation support</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Finished Projects Showcase -->
+    <div class="gypsum-projects">
+      <div class="gypsum-projects-header fade-in-up">
+        <h3>Finished Project Showcase</h3>
+        <p>Real gypsum installations we supply materials for — from residential homes to commercial offices</p>
+      </div>
+      <div class="gypsum-projects-grid">
+
+        <div class="gypsum-project-tile fade-in-up">
+          <!-- Replace src with your actual project photo -->
+          <!-- <img src="Images/gypsum-project-1.jpg" alt="Coffered ceiling project"> -->
+          <div class="gypsum-project-placeholder">
+            <div class="ph-icon">🏠</div>
+            <p>Project Photo Coming Soon</p>
+          </div>
+          <div class="gypsum-project-overlay">
+            <h4>Luxury Residential Coffered Ceiling</h4>
+            <span>Nairobi — Residential</span>
+          </div>
+        </div>
+
+        <div class="gypsum-project-tile fade-in-up">
+          <!-- Replace src with your actual project photo -->
+          <!-- <img src="Images/gypsum-project-2.jpg" alt="Office suspended ceiling"> -->
+          <div class="gypsum-project-placeholder">
+            <div class="ph-icon">🏢</div>
+            <p>Project Photo Coming Soon</p>
+          </div>
+          <div class="gypsum-project-overlay">
+            <h4>Corporate Office Suspended Ceiling</h4>
+            <span>Westlands — Commercial</span>
+          </div>
+        </div>
+
+        <div class="gypsum-project-tile fade-in-up">
+          <!-- Replace src with your actual project photo -->
+          <!-- <img src="Images/gypsum-project-3.jpg" alt="Decorative bulkhead ceiling"> -->
+          <div class="gypsum-project-placeholder">
+            <div class="ph-icon">🏨</div>
+            <p>Project Photo Coming Soon</p>
+          </div>
+          <div class="gypsum-project-overlay">
+            <h4>Modern Bulkhead &amp; Cornice Detail</h4>
+            <span>Karen — High-End Residential</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="gypsum-cta-row fade-in-up">
+      <a href="Products.html#gypsum" class="gypsum-cta">View All Gypsum Products</a>
+      <a href="#contact" class="gypsum-cta-secondary">Get a Free Quote</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHO WE SERVE SECTION
+  ============================================================ -->
+  <section class="serve-section">
+    <div class="serve-header fade-in-up">
+      <span class="serve-eyebrow">Who We Serve</span>
+      <h2>Built for Every Builder</h2>
+      <p>From individual homeowners to large commercial developers, we supply the right materials, on time, every time.</p>
+    </div>
+    <div class="serve-grid">
+
+      <div class="serve-card fade-in-up">
+        <div class="serve-card-icon" style="background: linear-gradient(135deg, #e3f0fb, #c5ddf5);">👷</div>
+        <h3>Contractors</h3>
+        <p>Reliable construction materials and project delivery support for your builds — large and small.</p>
+      </div>
+
+      <div class="serve-card fade-in-up">
+        <div class="serve-card-icon" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">🏗️</div>
+        <h3>Developers</h3>
+        <p>Material sourcing and logistics for residential and commercial developments at scale.</p>
+      </div>
+
+      <div class="serve-card fade-in-up">
+        <div class="serve-card-icon" style="background: linear-gradient(135deg, #fff3e0, #ffe0b2);">🏡</div>
+        <h3>Homeowners</h3>
+        <p>Materials and gypsum solutions for your home improvement project — advice included.</p>
+      </div>
+
+      <div class="serve-card fade-in-up">
+        <div class="serve-card-icon" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0);">🎨</div>
+        <h3>Interior Designers</h3>
+        <p>Gypsum boards, cornices and finishing products for modern, bespoke interiors.</p>
+      </div>
+
+      <div class="serve-card fade-in-up">
+        <div class="serve-card-icon" style="background: linear-gradient(135deg, #ede7f6, #d1c4e9);">🏪</div>
+        <h3>Hardware &amp; Resellers</h3>
+        <p>Competitive construction material supply with bulk pricing for your business.</p>
+      </div>
+
+      <div class="serve-card fade-in-up">
+        <div class="serve-card-icon" style="background: linear-gradient(135deg, #e0f7fa, #b2ebf2);">🏫</div>
+        <h3>Institutions</h3>
+        <p>Supply and delivery for schools, offices, churches and other public facilities.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="services-grid">
+
+    <div class="service-card">
+      <div class="service-image" style="background-image: url('Images/truck2.jpg')"></div>
+      <div class="service-content">
+        <h3>Material Supply</h3>
+        <p>Comprehensive range of construction materials with guaranteed quality and competitive pricing.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-image" style="background-image: url('Images/logistics.jpg')"></div>
+      <div class="service-content">
+        <h3>Logistics Network</h3>
+        <p>Nationwide delivery system ensuring timely and secure transportation of materials.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-image" style="background-image: url('Images/custom solutions.jpg')"></div>
+      <div class="service-content">
+        <h3>Custom Solutions</h3>
+        <p>Tailored material packages and delivery schedules for large-scale projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="geometric-overlay"></div>
+    <div class="content">
+      <h2>Innovating Construction Supply Chains</h2>
+      <p>Combining cutting-edge logistics with premium materials to revolutionize your building projects.</p>
+      <a href="about.html" class="cta-button">Our Process</a>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="geometric-overlay"></div>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <div class="info-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <h3>Visit Us</h3>
+            <p>Westlands<br>Nairobi, BC 051</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-phone"></i>
+          <div>
+           <h3>Call Us</h3>
+        <p>Main Office: (254) 745-933-132<br>Support: (254) 793-525-225</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <i class="fas fa-envelope"></i>
+      <div>
+        <h3>Email Us</h3>
+        <p>sales@constructionml.com<br>support@constructionml.com</p>
+      </div>
+    </div>
+    <div class="social-links">
+      <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.whatsapp.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.x.com" target="_blank"><i class="fab fa-x"></i></a>
+      <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <form class="contact-form" id="contactForm">
+    <h2>Quick Inquiry</h2>
+    <div class="form-group">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+    </div>
+    <div class="form-group">
+      <input type="tel" name="phone" placeholder="Phone">
+      <input type="text" name="subject" placeholder="Subject">
+    </div>
+    <div class="form-group">
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="cta-button">Send Message</button>
+  </form>
+
+  <p id="confirmationMessage" style="color: green; display: none; margin-top: 10px;">
+  Message window opened. Please complete and send it from your email.
+</p>
+
+<script>
+  document.getElementById('contactForm').onsubmit = function(e) {
+    e.preventDefault();
+
+    const name = document.querySelector('[name="name"]').value;
+    const email = document.querySelector('[name="email"]').value;
+    const phone = document.querySelector('[name="phone"]').value;
+    const subject = document.querySelector('[name="subject"]').value || 'Quick Inquiry';
+    const message = document.querySelector('[name="message"]').value;
+
+    const fullMessage = encodeURIComponent(message);
+    const mailtoLink = `mailto:sales@constructionml.com?subject=${encodeURIComponent(subject)}&body=${fullMessage}`;
+
+    window.location.href = mailtoLink;
+
+    // Show confirmation message
+    const confirmation = document.getElementById('confirmationMessage');
+    confirmation.style.display = 'block';
+    setTimeout(() => {
+      confirmation.style.display = 'none';
+    }, 6000);
+  };
+</script>
+
+</section>
+
+
+  <footer>
+    <p>&copy; 2025 EC&L • Building Better Futures </p>
+  </footer>
+
+    <script>
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+   
+    // Smooth scroll polyfill
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+      const hero = document.querySelector('.hero');
+      const scrolled = window.pageYOffset;
+      hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
+    });
+
+    // Smooth scroll for contact link
+document.querySelector('a[href="#contact"]').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.querySelector('#contact').scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+     });
+   });
+  </script>
+
+  <script src="script.js"></script>
+
+  <script>
+    // Intersection Observer for fade-in-up animations
+    const fadeEls = document.querySelectorAll('.fade-in-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger delay based on sibling index
+          const siblings = entry.target.parentElement.querySelectorAll('.fade-in-up');
+          let delay = 0;
+          siblings.forEach((el, idx) => { if (el === entry.target) delay = idx * 80; });
+          setTimeout(() => entry.target.classList.add('visible'), delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

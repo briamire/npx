@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Construction Materials & Logistics</title>
+  <style>
+    :root {
+      --primary: #2A5C82;
+      --secondary: #5CB3B2;
+      --accent: #FF6B6B;
+      --dark: #2C3E50;
+      --light: #F5F6F8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: var(--light);
+      overflow-x: hidden;
+    }
+
+    header {
+       position: fixed;
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255,255,255,0.95);
+      z-index: 1000;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      top: 0;
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--primary);
+      transform: rotate(-5deg);
+      animation: titleTilt 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleTilt {
+      from { transform: rotate(-5deg); }
+      to { transform: rotate(5deg); }
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--dark);
+      text-decoration: none;
+      position: relative;
+      padding: 0.5rem;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+
+    .delivery-modes {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.delivery-modes h3 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.delivery-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.delivery-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  width: 280px;
+  transition: transform 0.3s ease;
+}
+
+.delivery-card:hover {
+  transform: translateY(-5px);
+}
+
+.delivery-card img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+}
+
+.delivery-card h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #0066cc;
+}
+
+.delivery-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.8rem;
+}
+
+.vehicle-used {
+  display: block;
+  font-size: 0.9rem;
+  color: #888;
+  font-style: italic;
+}
+
+    /* Container for staggered layout */
+.staggered-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  justify-items: center;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Card styling */
+.card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 380px;
+  text-align: center;
+  color: #333;
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+  background-color: #f5f5f5;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.link-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Center the middle card */
+.centered-card {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+/* ✅ Responsive layout for mobile screens */
+@media (max-width: 768px) {
+  .staggered-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .centered-card {
+    grid-column: auto;
+    justify-self: auto;
+  }
+}
+           
+    .services-hero {
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, var(--primary), var(--secondary)),
+                  url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      margin-top: 80px;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .services-hero h2 {
+      font-size: 3.5rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .category {
+     padding: 4rem 2rem;
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .category h3 {
+     font-size: 2rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    .card-content {
+      padding: 2rem;
+      position: relative;
+    }
+
+    .card-content h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .card-content p {
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .geometric-overlay {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: var(--secondary);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      opacity: 0.1;
+      top: -50px;
+      right: -50px;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .services-hero h2 {
+        font-size: 2.5rem;
+      }
+      
+      nav {
+        display: none;
+      }
+      
+      header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="rotating-title">EC&L</h1>
+    <button class="hamburger">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="Products.html">Products</a>
+        <a href="Services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="#contact">Contact</a>
+        
+    </nav>
+</header>
+
+  <section class="services-hero">
+    <h2>Premium Construction Services</h2>
+  </section>
+
+  <!-- Material Sales -->
+  <section class="category">
+    <div class="geometric-overlay"></div>
+    <h3>Material Solutions</h3>
+    <div class="card-container">
+      <div class="card">
+        <img src="Images\bulk material supply.webp" alt="Bulk Materials">
+        <div class="card-content">
+          <h4>Bulk Material Supply</h4>
+          <p>Competitive pricing on bulk orders of cement, steel, and aggregates with guaranteed quality standards.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="Images\specialty materials.webp" alt="Specialty Materials">
+        <div class="card-content">
+          <h4>Specialty Materials</h4>
+          <p>High-performance insulation, roofing systems, and premium flooring solutions.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="Images\sustainable-building-materials.webp" alt="Sustainable solutions">
+        <div class="card-content">
+          <h4>Sustainable Solutions</h4>
+          <p>Eco-friendly building materials supporting LEED certification and green initiatives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logistics Services -->
+<section class="category">
+  <div class="geometric-overlay"></div>
+  <h3>Logistics Network</h3>
+  <div class="card-container">
+    <div class="card">
+      <img src="Images/nationwide transport.webp" alt="Transportation">
+      <div class="card-content">
+        <h4>Nationwide Transport</h4>
+        <p>Certified fleet with real-time tracking for secure, on-time material delivery.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="Images/smart warehousing.webp" alt="Warehousing">
+      <div class="card-content">
+        <h4>Smart Warehousing</h4>
+        <p>Climate-controlled storage facilities with 24/7 security monitoring.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="Images/supply chain.webp" alt="Supply Chain">
+      <div class="card-content">
+        <h4>Supply Chain Optimization</h4>
+        <p>End-to-end management from procurement to final delivery.</p>
+      </div>
+    </div>
+  </div>
+<br><br><br><br>
+
+  <!-- Logistics Company Cards -->
+  <h3>Our Courier Partners</h3>
+<div class="staggered-grid">
+  <!-- Row 1: 2 Cards -->
+  <a href="https://www.dhl.com/ke-en/home.html" target="_blank" class="card link-card">
+    <img src="Images\dhl.webp" alt="DHL">
+    <div class="card-content">
+      <h4>DHL Kenya</h4>
+      <p>International and local parcel delivery with express options.</p>
+    </div>
+  </a>
+
+  <a href="https://www.g4s.com/en-ke/what-we-do/logistics" target="_blank" class="card link-card">
+    <img src="Images\g4s.webp" alt="G4S">
+    <div class="card-content">
+      <h4>G4S Logistics</h4>
+      <p>Secure parcel transport and courier services across Kenya.</p>
+    </div>
+  </a>
+
+  <!-- Row 2: Centered 1 Card -->
+  <a href="https://www.fedex.com/en-ke/home.html" target="_blank" class="card link-card centered-card">
+    <img src="Images\FEDEX.webp" alt="FedEx">
+    <div class="card-content">
+      <h4>FedEx Kenya</h4>
+      <p>Reliable global shipping and express document delivery.</p>
+    </div>
+  </a>
+
+  <!-- Row 3: 2 Cards -->
+  <a href="https://www.posta.co.ke/" target="_blank" class="card link-card">
+    <img src="Images\posta-kenya.webp" alt="Posta Kenya">
+    <div class="card-content">
+      <h4>Posta Kenya</h4>
+      <p>Nationwide postal and courier services with wide accessibility.</p>
+    </div>
+  </a>
+
+ <a href="https://www.fargocourier.co.ke/" target="_blank" class="card link-card">
+  <img src="Images\Fargo-courier.webp" alt="Fargo Courier">
+  <div class="card-content">
+    <h4>Fargo Courier</h4>
+    <p>Reliable courier and logistics services across Kenya with same-day delivery options.</p>
+  </div>
+</a>
+
+</div>
+
+</section>
+
+<section class="delivery-modes">
+  <h3>Modes of Delivery</h3>
+  <div class="delivery-card-container">
+    
+    <!-- Same-Day Delivery -->
+    <div class="delivery-card">
+      <img src="Images\motobike.webp" alt="Motorbike Delivery">
+      <h4>Same-Day Delivery</h4>
+      <p>Quick delivery of small items like documents or tools using motorbikes.</p>
+      <span class="vehicle-used">Vehicle: Motorbike</span>
+    </div>
+
+    <!-- Next-Day Delivery -->
+    <div class="delivery-card">
+      <img src="Images\delivery van.webp" alt="Van Delivery">
+      <h4>Next-Day Delivery</h4>
+      <p>Timely next-day delivery of medium packages using vans across counties.</p>
+      <span class="vehicle-used">Vehicle: Delivery Van</span>
+    </div>
+
+    <!-- Scheduled Delivery -->
+    <div class="delivery-card">
+      <img src="Images\car delivery.webp" alt="Car Delivery">
+      <h4>Scheduled Delivery</h4>
+      <p>Choose your preferred time for delivery via car or van for flexibility.</p>
+      <span class="vehicle-used">Vehicle: Car/Van</span>
+    </div>
+
+    <!-- International Shipping -->
+    <div class="delivery-card">
+      <img src="Images\cargo courier.webp" alt="Air Freight">
+      <h4>International Shipping</h4>
+      <p>Ship equipment and documents globally via air freight services.</p>
+      <span class="vehicle-used">Vehicle: Cargo Plane / Partner Courier</span>
+    </div>
+
+    <!-- Heavy Construction Delivery -->
+    <div class="delivery-card">
+      <img src="Images\tipper-lorry.webp" alt="Truck Delivery">
+      <h4>Heavy Goods Delivery</h4>
+      <p>Transport of construction materials like bricks, sand, and steel using trucks.</p>
+      <span class="vehicle-used">Vehicle: Tipper/Flatbed Truck</span>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 EC&L • Building Better Futures</p>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Smooth scroll for contact link
+    document.querySelector('a[href="#contact"]').addEventListener('click', function(e) {
+      // Check if the user is NOT on index.html
+      if (!window.location.href.includes('index.html')) {
+        e.preventDefault(); // Stop the default link behavior
+        window.location.href = 'index.html#contact'; // Redirect to index.html#contact
+      }
+      // If already on index.html, your existing smooth scroll will handle it
+    });
+    // Modal functions (add your modal implementation)
+  </script>
+</body>
+</html>
