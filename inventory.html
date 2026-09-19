@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management - Construction Materials & Logistics</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Construction Materials & Logistics</h1>
+    <div class="header-actions">
+      <button class="logout-button" onclick="window.location.href='index.html'">Logout</button>
+    </div>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="index.html#materials">Materials</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+
+  <!-- Inventory Management Section -->
+  <section class="section inventory">
+    <h2>Inventory Management</h2>
+    <div class="inventory-form">
+      <h3>Add/Update Item</h3>
+      <form id="inventoryForm">
+        <input type="text" id="itemName" placeholder="Item Name" required>
+        <input type="text" id="itemPrice" placeholder="Item Price" required>
+        <input type="file" id="itemImage" accept="image/*" required>
+        <button type="submit">Add/Update Item</button>
+      </form>
+    </div>
+    <div class="inventory-list">
+      <h3>Current Inventory</h3>
+      <ul id="inventoryList">
+        <!-- Inventory items will be dynamically added here -->
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Construction Materials & Logistics. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
