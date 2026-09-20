@@ -3,529 +3,447 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us - EC&L</title>
+  <title>About Us — EC&L | Everlast Construction & Logistics, Nairobi</title>
+  <meta name="description" content="Learn about EC&L — Kenya's trusted construction material supplier, gypsum solution provider and tipper transport company based in Nairobi.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2A5C82;
-      --secondary: #5CB3B2;
-      --accent: #FF6B6B;
-      --dark: #2C3E50;
-      --light: #F5F6F8;
+      --primary:   #1E3A2F;
+      --accent:    #E07B2A;
+      --secondary: #C39B52;
+      --dark:      #111827;
+      --mid:       #374151;
+      --muted:     #6B7280;
+      --light:     #F9FAFB;
+      --white:     #FFFFFF;
+      --border:    rgba(0,0,0,0.08);
+      --whatsapp:  #25D366;
+      --radius:    14px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.18);
     }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter','Segoe UI',sans-serif; background:var(--light); color:var(--dark); overflow-x:hidden; line-height:1.6; }
+    a { text-decoration:none; color:inherit; }
+    img { max-width:100%; display:block; }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    body {
-      background: var(--light);
-      overflow-x: hidden;
-    }
-
-    /* Header Styles */
+    /* ---- HEADER ---- */
     header {
-      position: fixed;
-      width: 100%;
-      padding: 1rem;
-      background: rgba(255,255,255,0.95);
-      z-index: 1000;
-      box-shadow: 0 5px 30px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      top: 0;
-      backdrop-filter: blur(10px);
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      background:rgba(255,255,255,0.97); backdrop-filter:blur(12px);
+      box-shadow:0 2px 20px rgba(0,0,0,0.08);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 2rem; height:70px;
+    }
+    .logo { font-size:1.6rem; font-weight:900; color:var(--primary); letter-spacing:-1px; }
+    .logo span { color:var(--accent); }
+    nav { display:flex; align-items:center; gap:0.2rem; }
+    nav a { color:var(--mid); font-size:0.88rem; font-weight:600; padding:0.5rem 0.8rem; border-radius:8px; transition:all 0.2s; white-space:nowrap; }
+    nav a:hover { color:var(--accent); background:rgba(224,123,42,0.07); }
+    .nav-cta { background:var(--accent); color:white !important; padding:0.55rem 1.3rem !important; border-radius:50px !important; font-weight:700 !important; margin-left:0.5rem; box-shadow:0 4px 15px rgba(224,123,42,0.3); }
+    .nav-cta:hover { background:#c96b1d !important; transform:translateY(-1px); color:white !important; }
+    .hamburger { display:none; cursor:pointer; background:transparent; border:0; padding:0.5rem; }
+    .hamburger-box { width:28px; height:22px; display:inline-block; position:relative; }
+    .hamburger-inner,.hamburger-inner::before,.hamburger-inner::after { width:100%; height:3px; background:var(--primary); position:absolute; left:0; border-radius:3px; transition:transform 0.25s, opacity 0.25s; }
+    .hamburger-inner { top:50%; transform:translateY(-50%); }
+    .hamburger-inner::before { content:''; top:-9px; }
+    .hamburger-inner::after  { content:''; top: 9px; }
+    .hamburger.active .hamburger-inner { background:transparent; }
+    .hamburger.active .hamburger-inner::before { transform:translateY(9px) rotate(45deg); }
+    .hamburger.active .hamburger-inner::after  { transform:translateY(-9px) rotate(-45deg); }
+    @media (max-width:900px) {
+      .hamburger { display:block; }
+      nav { position:fixed; top:70px; right:-100%; width:280px; height:calc(100vh - 70px); background:white; flex-direction:column; align-items:flex-start; padding:2rem 1.5rem; gap:0.3rem; box-shadow:-5px 0 20px rgba(0,0,0,0.12); transition:right 0.3s ease; z-index:999; overflow-y:auto; }
+      nav.active { right:0; }
+      nav a { width:100%; padding:0.85rem 1rem; border-bottom:1px solid rgba(0,0,0,0.06); font-size:1rem; border-radius:0; }
+      .nav-cta { margin:0.5rem 0 0; width:100%; text-align:center; border-radius:50px !important; }
     }
 
-    #rotating-title {
-      font-size: 1.5rem;
-      color: var(--primary);
-      transform: rotate(-5deg);
-      animation: titleTilt 3s ease-in-out infinite alternate;
-      margin: 0 1rem;
-      display: inline-block;
+    /* ---- PAGE HERO ---- */
+    .page-hero {
+      min-height:50vh; display:flex; align-items:center;
+      background:linear-gradient(135deg, var(--primary) 0%, #2a5c3f 60%, var(--dark) 100%);
+      position:relative; overflow:hidden;
+      padding:100px 2rem 4rem; color:white;
+    }
+    .page-hero::before { content:''; position:absolute; inset:0; background:url('Images/warehouse.webp') center/cover no-repeat; opacity:0.12; }
+    .page-hero-inner { max-width:1200px; margin:0 auto; width:100%; position:relative; z-index:1; }
+    .page-hero-tag { display:inline-block; background:rgba(224,123,42,0.2); border:1px solid rgba(224,123,42,0.4); color:#f5c08a; font-size:0.73rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; padding:0.35rem 1.1rem; border-radius:30px; margin-bottom:1rem; }
+    .page-hero h1 { font-size:clamp(2.2rem,5vw,3.6rem); font-weight:900; line-height:1.1; margin-bottom:0.8rem; letter-spacing:-0.5px; }
+    .page-hero h1 span { color:var(--accent); }
+    .page-hero p { color:rgba(255,255,255,0.75); font-size:1.05rem; max-width:620px; line-height:1.75; }
+    .page-hero-btns { display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.8rem; }
+    .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.9rem 2rem; border-radius:50px; font-weight:700; font-size:0.93rem; cursor:pointer; transition:all 0.3s; border:none; font-family:inherit; }
+    .btn-orange { background:var(--accent); color:white; box-shadow:0 6px 20px rgba(224,123,42,0.35); }
+    .btn-orange:hover { background:#c96b1d; transform:translateY(-2px); color:white; }
+    .btn-whatsapp { background:var(--whatsapp); color:white; }
+    .btn-whatsapp:hover { background:#1ebe5d; transform:translateY(-2px); color:white; }
+
+    /* ---- STATS BAR ---- */
+    .stats-bar { background:var(--primary); padding:1.2rem 2rem; }
+    .stats-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; text-align:center; }
+    .stat-num { font-size:1.8rem; font-weight:900; color:var(--accent); line-height:1; }
+    .stat-lbl { font-size:0.75rem; color:rgba(255,255,255,0.6); text-transform:uppercase; letter-spacing:1px; margin-top:0.2rem; }
+    @media (max-width:600px) { .stats-inner { grid-template-columns:repeat(2,1fr); } }
+
+    /* ---- SECTIONS ---- */
+    .section-inner { max-width:1200px; margin:0 auto; padding:0 2rem; }
+    .section-pad { padding:5rem 0; }
+    .eyebrow { display:inline-block; font-size:0.72rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; padding:0.35rem 1.1rem; border-radius:30px; margin-bottom:0.8rem; }
+    .eyebrow-orange { background:rgba(224,123,42,0.12); color:var(--accent); }
+    .eyebrow-green  { background:rgba(30,58,47,0.1); color:var(--primary); }
+    .section-title { font-size:clamp(1.7rem,3vw,2.5rem); font-weight:800; margin-bottom:0.8rem; line-height:1.2; letter-spacing:-0.3px; }
+
+    /* Overview */
+    .company-overview { padding:5rem 2rem; }
+    .company-overview .inner { max-width:1200px; margin:0 auto; }
+    .grid-2col { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .overview-image { width:100%; height:420px; object-fit:cover; border-radius:var(--radius); box-shadow:var(--shadow-lg); }
+    .overview-text h2 { color:var(--primary); font-size:2.2rem; font-weight:800; margin-bottom:1.2rem; line-height:1.2; }
+    .overview-text p { color:var(--mid); line-height:1.8; margin-bottom:1.2rem; font-size:1rem; }
+    .overview-text strong { color:var(--accent); }
+
+    /* Differentiators */
+    .key-differentiators { background:white; padding:5rem 2rem; }
+    .diff-inner { max-width:1200px; margin:0 auto; }
+    .diff-header { text-align:center; margin-bottom:3rem; }
+    .differentiator-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
+    .differentiator-card { padding:2rem; border-left:4px solid var(--accent); border-radius:0 var(--radius) var(--radius) 0; background:var(--light); transition:transform 0.3s, box-shadow 0.3s; }
+    .differentiator-card:hover { transform:translateX(8px); box-shadow:var(--shadow-sm); }
+    .differentiator-card h3 { color:var(--primary); font-weight:700; margin-bottom:0.5rem; font-size:1.05rem; }
+    .differentiator-card p { color:var(--muted); font-size:0.9rem; line-height:1.65; }
+
+    /* Values */
+    .core-values { padding:5rem 2rem; background:var(--light); }
+    .values-inner { max-width:1200px; margin:0 auto; }
+    .values-header { text-align:center; margin-bottom:3rem; }
+    .values-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1.5rem; }
+    .value-card { text-align:center; padding:2rem 1.5rem; background:white; border-radius:var(--radius); box-shadow:var(--shadow-sm); border:1px solid var(--border); transition:all 0.3s; }
+    .value-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-md); }
+    .value-icon { font-size:2.5rem; margin-bottom:0.8rem; }
+    .value-card h3 { color:var(--primary); font-weight:700; margin-bottom:0.4rem; font-size:1rem; }
+    .value-card p { color:var(--muted); font-size:0.87rem; line-height:1.6; }
+
+    /* Milestones / Timeline */
+    .milestones { padding:5rem 2rem; background:var(--primary); color:white; }
+    .milestones-inner { max-width:1000px; margin:0 auto; }
+    .milestones h2 { text-align:center; font-size:2rem; font-weight:800; margin-bottom:0.5rem; color:white; }
+    .milestones-sub { text-align:center; color:rgba(255,255,255,0.6); margin-bottom:3.5rem; font-size:0.95rem; }
+    .timeline { position:relative; }
+    .timeline::after { content:''; position:absolute; width:4px; background:var(--accent); top:0; bottom:0; left:50%; margin-left:-2px; border-radius:2px; }
+    .timeline-item { padding:20px 50px; position:relative; width:50%; }
+    .timeline-item::after { content:''; position:absolute; width:20px; height:20px; right:-10px; background:var(--accent); border:4px solid white; top:24px; border-radius:50%; z-index:1; }
+    .left { left:0; }
+    .right { left:50%; }
+    .right::after { left:-10px; right:auto; }
+    .timeline-content { padding:1.5rem; background:rgba(255,255,255,0.08); border-radius:var(--radius); border:1px solid rgba(255,255,255,0.1); }
+    .timeline-content h4 { color:var(--accent); font-weight:700; margin-bottom:0.4rem; }
+    .timeline-content p { color:rgba(255,255,255,0.7); font-size:0.9rem; }
+    @media (max-width:700px) {
+      .timeline::after { left:20px; }
+      .timeline-item { width:100%; padding-left:60px; padding-right:0; }
+      .timeline-item::after { left:8px; right:auto; }
+      .right { left:0; }
+      .grid-2col { grid-template-columns:1fr; }
     }
 
-    @keyframes titleTilt {
-      from { transform: rotate(-5deg); }
-      to { transform: rotate(5deg); }
-    }
+    /* CTA Strip */
+    .cta-strip { background:linear-gradient(135deg, var(--accent), #c96b1d); color:white; text-align:center; padding:3.5rem 2rem; }
+    .cta-strip h2 { font-size:2rem; font-weight:800; margin-bottom:0.6rem; }
+    .cta-strip p { color:rgba(255,255,255,0.85); margin-bottom:1.8rem; font-size:1rem; }
+    .cta-strip-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+    .btn-white { background:white; color:var(--accent); font-weight:700; }
+    .btn-white:hover { background:#f8f8f8; transform:translateY(-2px); }
+    .btn-ghost { background:transparent; color:white; border:2px solid rgba(255,255,255,0.7); font-weight:700; }
+    .btn-ghost:hover { background:rgba(255,255,255,0.1); }
 
-    /* Hamburger Menu */
-    .hamburger {
-      display: none;
-      padding: 1rem;
-      cursor: pointer;
-      background: transparent;
-      border: 0;
-      z-index: 1001;
-    }
+    /* ---- FOOTER ---- */
+    footer { background:#0d1a12; color:white; padding:4rem 2rem 2rem; }
+    .footer-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1.5fr; gap:3rem; margin-bottom:3rem; }
+    .footer-brand .logo { font-size:1.8rem; margin-bottom:1rem; }
+    .footer-brand p { color:rgba(255,255,255,0.55); font-size:0.88rem; line-height:1.7; max-width:260px; margin-bottom:1.5rem; }
+    .footer-socials { display:flex; gap:0.7rem; flex-wrap:wrap; }
+    .footer-social { width:38px; height:38px; background:rgba(255,255,255,0.08); border-radius:50%; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.6); font-size:0.9rem; transition:all 0.3s; }
+    .footer-social:hover { background:var(--accent); color:white; transform:translateY(-3px); }
+    .footer-col h4 { font-size:0.85rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent); margin-bottom:1.2rem; }
+    .footer-col ul { list-style:none; padding:0; display:flex; flex-direction:column; gap:0.6rem; }
+    .footer-col ul a { color:rgba(255,255,255,0.55); font-size:0.87rem; transition:color 0.2s; }
+    .footer-col ul a:hover { color:white; }
+    .footer-contact-item { display:flex; align-items:flex-start; gap:0.75rem; margin-bottom:0.9rem; }
+    .footer-contact-item i { color:var(--accent); margin-top:0.15rem; flex-shrink:0; }
+    .footer-contact-item span { color:rgba(255,255,255,0.6); font-size:0.86rem; line-height:1.5; }
+    .footer-bottom { max-width:1200px; margin:0 auto; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .footer-bottom p { color:rgba(255,255,255,0.35); font-size:0.8rem; }
+    @media (max-width:900px) { .footer-inner { grid-template-columns:1fr 1fr; gap:2rem; } }
+    @media (max-width:500px) { .footer-inner { grid-template-columns:1fr; } }
 
-    .hamburger-box {
-      width: 30px;
-      height: 24px;
-      display: inline-block;
-      position: relative;
-    }
-
-    .hamburger-inner {
-      width: 100%;
-      height: 3px;
-      background: var(--primary);
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: transform 0.3s, background 0.3s;
-    }
-
-    .hamburger-inner::before,
-    .hamburger-inner::after {
-      content: '';
-      width: 100%;
-      height: 3px;
-      background: var(--primary);
-      position: absolute;
-      left: 0;
-      transition: transform 0.3s;
-    }
-
-    .hamburger-inner::before { top: -10px; }
-    .hamburger-inner::after { top: 10px; }
-
-    /* Active Hamburger State */
-    .hamburger.active .hamburger-inner {
-      background: transparent;
-    }
-    .hamburger.active .hamburger-inner::before {
-      transform: translateY(10px) rotate(45deg);
-    }
-    .hamburger.active .hamburger-inner::after {
-      transform: translateY(-10px) rotate(-45deg);
-    }
-
-    nav {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    nav a {
-      color: var(--dark);
-      text-decoration: none;
-      position: relative;
-      padding: 0.5rem;
-      transition: all 0.3s;
-      font-weight: 500;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background: var(--accent);
-      transition: width 0.3s;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    /* Mobile Styles */
-    @media (max-width: 768px) {
-      .hamburger {
-        display: block !important;
-        order: 3;
-      }
-      
-      #rotating-title {
-        order: 1;
-      }
-      
-      nav {
-        order: 2;
-        position: fixed;
-        top: 80px;
-        right: -100%;
-        width: 280px;
-        height: calc(100vh - 80px);
-        background: rgba(255,255,255,0.98);
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 2rem;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.15);
-        transition: right 0.3s ease;
-        z-index: 999;
-      }
-      
-      nav.active {
-        right: 0;
-      }
-      
-      nav a {
-        width: 100%;
-        padding: 1rem 0;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-        font-size: 1.1rem;
-        color: var(--dark);
-        text-decoration: none;
-      }
-      
-      nav a:hover {
-        color: var(--primary);
-      }
-    }
-
-    /* About Page Content Styles */
-    .about-hero {
-      height: 70vh;
-      background: linear-gradient(45deg, var(--primary), var(--secondary)),
-                  url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-      background-size: cover;
-      background-position: center;
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-      margin-top: 80px;
-      display: flex;
-      align-items: center;
-      padding: 4rem;
-      color: white;
-    }
-
-    .about-hero-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .about-hero h1 {
-      font-size: 4rem;
-      margin-bottom: 2rem;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-    }
-
-    .about-hero p {
-      font-size: 1.4rem;
-      max-width: 800px;
-      line-height: 1.6;
-    }
-
-    .company-overview {
-      padding: 5rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .grid-2col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .overview-image {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      border-radius: 15px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-    }
-
-    .overview-text h2 {
-      color: var(--primary);
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .overview-text p {
-      color: var(--dark);
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-      font-size: 1.1rem;
-    }
-
-    .key-differentiators {
-      background: white;
-      padding: 5rem 2rem;
-    }
-
-    .differentiator-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .differentiator-card {
-      padding: 2rem;
-      border-left: 4px solid var(--accent);
-      transition: transform 0.3s;
-    }
-
-    .differentiator-card:hover {
-      transform: translateX(10px);
-    }
-
-    .differentiator-card h3 {
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .core-values {
-      padding: 5rem 2rem;
-      background: var(--light);
-    }
-
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .value-card {
-      text-align: center;
-      padding: 2rem;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .value-icon {
-      font-size: 2.5rem;
-      color: var(--secondary);
-      margin-bottom: 1rem;
-    }
-
-    .milestones {
-      padding: 5rem 2rem;
-      background: var(--dark);
-      color: white;
-    }
-
-    .timeline {
-      position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .timeline::after {
-      content: '';
-      position: absolute;
-      width: 6px;
-      background: var(--accent);
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      margin-left: -3px;
-    }
-
-    .timeline-item {
-      padding: 20px 40px;
-      position: relative;
-      width: 50%;
-    }
-
-    .timeline-item::after {
-      content: '';
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      right: -12px;
-      background: var(--accent);
-      border: 4px solid white;
-      top: 20px;
-      border-radius: 50%;
-      z-index: 1;
-    }
-
-    .left {
-      left: 0;
-    }
-
-    .right {
-      left: 50%;
-    }
-
-    .timeline-content {
-      padding: 20px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-    }
-
-    footer {
-      background: var(--dark);
-      color: white;
-      padding: 4rem 2rem;
-      text-align: center;
-      clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
-      margin-top: 4rem;
-    }
-
-    @media (max-width: 768px) {
-      .grid-2col {
-        grid-template-columns: 1fr;
-      }
-      
-      .timeline::after {
-        left: 20px;
-      }
-      
-      .timeline-item {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 0;
-      }
-      
-      .timeline-item::after {
-        left: 18px;
-      }
-      
-      .right {
-        left: 0%;
-      }
-      
-      .about-hero h1 {
-        font-size: 2.5rem;
-      }
-      
-      .about-hero {
-        padding: 2rem;
-        height: 60vh;
-      }
-    }
+    /* ---- WHATSAPP FLOAT ---- */
+    .whatsapp-float { position:fixed; bottom:2rem; right:2rem; z-index:9999; display:flex; align-items:center; gap:0.7rem; }
+    .whatsapp-fab { width:58px; height:58px; background:var(--whatsapp); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.6rem; color:white; box-shadow:0 6px 25px rgba(37,211,102,0.5); cursor:pointer; transition:all 0.3s; animation:waPulse 2.5s infinite; }
+    .whatsapp-fab:hover { transform:scale(1.1); }
+    @keyframes waPulse { 0%,100%{box-shadow:0 6px 25px rgba(37,211,102,0.5)}50%{box-shadow:0 6px 35px rgba(37,211,102,0.8)} }
+    .whatsapp-label { background:white; color:var(--dark); font-size:0.82rem; font-weight:700; padding:0.45rem 1rem; border-radius:50px; box-shadow:var(--shadow-md); white-space:nowrap; }
+    @media (max-width:768px) { .whatsapp-label { display:none; } }
   </style>
 </head>
 <body>
+
+  <!-- HEADER -->
   <header>
-    <h1 id="rotating-title">EC&L</h1>
-    <button class="hamburger">
-      <span class="hamburger-box">
-        <span class="hamburger-inner"></span>
-      </span>
+    <div class="logo">EC<span>&</span>L</div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span class="hamburger-box"><span class="hamburger-inner"></span></span>
     </button>
-    <nav>
+    <nav id="mainNav">
       <a href="index.html">Home</a>
-      <a href="Products.html">Products</a>
+      <a href="Products.html">Materials</a>
+      <a href="Products.html#gypsum">Gypsum</a>
+      <a href="index.html#transport">Transport</a>
       <a href="Services.html">Services</a>
       <a href="about.html">About</a>
-      <a href="#contact">Contact</a>
+      <a href="index.html#quote">Contact</a>
+      <a href="index.html#quote" class="nav-cta">GET A QUOTE</a>
     </nav>
   </header>
 
-  <section class="about-hero">
-    <div class="about-hero-content">
-      <h1>Building Excellence Since 2005</h1>
-      <p>As a leader in integrated construction solutions, EC&L combines material expertise with cutting-edge logistics to deliver exceptional results for projects of all scales.</p>
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <span class="page-hero-tag">Our Story</span>
+      <h1>Building Excellence<br><span>Since 2005</span></h1>
+      <p>As a leader in integrated construction solutions, EC&L combines material expertise with reliable logistics to deliver exceptional results for projects of all scales across Kenya.</p>
+      <div class="page-hero-btns">
+        <a href="index.html#quote" class="btn btn-orange"><i class="fas fa-file-alt"></i> GET A QUOTE</a>
+        <a href="https://wa.me/254745933132?text=Hello%20EC%26L%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20company." target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat With Us</a>
+      </div>
     </div>
-  </section>
+  </div>
 
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div><div class="stat-num">500+</div><div class="stat-lbl">Projects Supplied</div></div>
+      <div><div class="stat-num">150+</div><div class="stat-lbl">Happy Contractors</div></div>
+      <div><div class="stat-num">20+</div><div class="stat-lbl">Years Experience</div></div>
+      <div><div class="stat-num">47</div><div class="stat-lbl">Counties Reached</div></div>
+    </div>
+  </div>
+
+  <!-- COMPANY OVERVIEW -->
   <section class="company-overview">
-    <div class="grid-2col">
-      <img src="Images/warehouse.webp" alt="Construction Site" class="overview-image">
-      <div class="overview-text">
-        <h2>Comprehensive Construction Solutions</h2>
-        <p>EC&L operates as a full-service construction partner, specializing in three core areas:</p>
-        <p>1. <strong>Material Procurement:</strong> Strategic partnerships with 200+ certified manufacturers worldwide ensure premium-grade materials at competitive prices.</p>
-        <p>2. <strong>Logistics Management:</strong> 150+ specialized vehicles and 500,000 sq.ft of climate-controlled warehousing enable just-in-time delivery nationwide.</p>
-        <p>3. <strong>Project Consulting:</strong> Licensed engineers provide end-to-end support from planning through completion.</p>
+    <div class="inner">
+      <div class="grid-2col">
+        <img src="Images/warehouse.webp" alt="EC&L Warehouse" class="overview-image">
+        <div class="overview-text">
+          <span class="eyebrow eyebrow-orange">Who We Are</span>
+          <h2>Comprehensive Construction Solutions</h2>
+          <p>EC&L — Everlast Construction &amp; Logistics — operates as a full-service construction partner, specialising in three core areas for contractors, developers and homeowners across Kenya.</p>
+          <p><strong>1. Material Procurement:</strong> Strategic partnerships with certified suppliers ensure premium-grade materials at competitive prices — cement, steel, gypsum, sand, ballast, aggregates and more.</p>
+          <p><strong>2. Logistics &amp; Transport:</strong> Reliable tipper trucks and specialised vehicles enable just-in-time delivery from source to your construction site.</p>
+          <p><strong>3. Gypsum Solutions:</strong> From gypsum boards and ceiling systems to full installation — we supply and install modern gypsum finishes for residential and commercial projects.</p>
+          <a href="index.html#quote" class="btn btn-orange" style="margin-top:1rem;"><i class="fas fa-file-alt"></i> Request a Quote</a>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- KEY DIFFERENTIATORS -->
   <section class="key-differentiators">
-    <div class="differentiator-grid">
-      <div class="differentiator-card">
-        <h3>Quality Assurance</h3>
-        <p>ISO 9001-certified testing with digital material traceability from source to site.</p>
+    <div class="diff-inner">
+      <div class="diff-header">
+        <span class="eyebrow eyebrow-orange">Why EC&L</span>
+        <h2 class="section-title">What Sets Us Apart</h2>
+        <p style="color:var(--muted); font-size:1rem; max-width:500px; margin:0 auto;">We're not just a supplier — we're your construction procurement partner.</p>
       </div>
-      <div class="differentiator-card">
-        <h3>Smart Logistics</h3>
-        <p>Real-time GPS tracking and inventory management through our SmartSite™ platform.</p>
-      </div>
-      <div class="differentiator-card">
-        <h3>Sustainability</h3>
-        <p>40% materials meet LEED standards with carbon-neutral shipping options.</p>
+      <div class="differentiator-grid">
+        <div class="differentiator-card">
+          <h3>🏆 Quality Assurance</h3>
+          <p>We source from certified suppliers with verified quality standards — what we supply is what you can build on.</p>
+        </div>
+        <div class="differentiator-card">
+          <h3>🚛 Smart Logistics</h3>
+          <p>Real-time delivery coordination and reliable tipper transport to keep your project timeline on track.</p>
+        </div>
+        <div class="differentiator-card">
+          <h3>🌱 Local Knowledge</h3>
+          <p>We understand the Kenyan construction environment — local suppliers, local logistics, Kenyan project realities.</p>
+        </div>
+        <div class="differentiator-card">
+          <h3>🏠 One Construction Partner</h3>
+          <p>Materials + gypsum + transport under one roof. One call, one partner, one invoice — no juggling multiple suppliers.</p>
+        </div>
+        <div class="differentiator-card">
+          <h3>📅 Project-Focused</h3>
+          <p>Construction operates around deadlines. We plan our supply and delivery around your project programme.</p>
+        </div>
+        <div class="differentiator-card">
+          <h3>💰 Competitive Pricing</h3>
+          <p>We work to provide practical solutions within your project budget — transparent pricing, no surprises.</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- CORE VALUES -->
   <section class="core-values">
-    <div class="values-grid">
-      <div class="value-card">
-        <div class="value-icon">🏗️</div>
-        <h3>Integrity</h3>
-        <p>Ethical practices and transparent communication in all operations.</p>
+    <div class="values-inner">
+      <div class="values-header">
+        <span class="eyebrow eyebrow-green">Our Foundation</span>
+        <h2 class="section-title">Our Core Values</h2>
       </div>
-      <div class="value-card">
-        <div class="value-icon">⚡</div>
-        <h3>Innovation</h3>
-        <p>15% annual efficiency gains through R&D investment.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">🛡️</div>
-        <h3>Safety</h3>
-        <p>5 million work hours without lost-time accidents.</p>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🏗️</div>
+          <h3>Integrity</h3>
+          <p>Ethical practices and transparent communication in all our operations and client relationships.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">⚡</div>
+          <h3>Reliability</h3>
+          <p>We deliver what we promise — on time, in full, at the agreed specification. Always.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🛡️</div>
+          <h3>Safety</h3>
+          <p>Safe handling, storage and transportation of all construction materials — yours and ours.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🤝</div>
+          <h3>Partnership</h3>
+          <p>We treat every contractor, developer and homeowner as a long-term partner, not a transaction.</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- MILESTONES TIMELINE -->
   <section class="milestones">
-    <div class="timeline">
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <h4>2005 - Foundation</h4>
-          <p>Established as regional supplier in Nairobi, Kenya</p>
+    <div class="milestones-inner">
+      <h2>Our Journey</h2>
+      <p class="milestones-sub">Key milestones in EC&L's growth as Kenya's construction supply partner</p>
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h4>2005 — Foundation</h4>
+            <p>Established as a construction material supplier in Nairobi, Kenya</p>
+          </div>
         </div>
-      </div>
-      <div class="timeline-item right">
-        <div class="timeline-content">
-          <h4>2015 - Fleet Expansion</h4>
-          <p>Acquired 20 specialized transport vehicles</p>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h4>2010 — Gypsum Division</h4>
+            <p>Launched dedicated gypsum supply and installation services</p>
+          </div>
         </div>
-      </div>
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <h4>2012 - National Reach</h4>
-          <p>Opened 12 Midwest distribution centers</p>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h4>2015 — Fleet Expansion</h4>
+            <p>Acquired tipper trucks and specialised transport vehicles for site delivery</p>
+          </div>
         </div>
-      </div>
-      <div class="timeline-item right">
-        <div class="timeline-content">
-          <h4>2020 - Green Initiative</h4>
-          <p>Achieved ISO 14001 environmental certification</p>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h4>2020 — National Reach</h4>
+            <p>Expanded material delivery network to cover 47 counties across Kenya</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h4>2025 — Digital Platform</h4>
+            <p>Launched online quotation and ordering system for contractors and developers</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- CTA STRIP -->
+  <div class="cta-strip">
+    <h2>Ready to Work Together?</h2>
+    <p>Send us your material list or BOQ — we'll get back to you within 24 hours.</p>
+    <div class="cta-strip-btns">
+      <a href="index.html#quote" class="btn btn-white">Request a Quote</a>
+      <a href="https://wa.me/254745933132?text=Hello%20EC%26L%2C%20I%20would%20like%20to%20start%20a%20project%20enquiry." target="_blank" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 EC&L • Building Better Futures</p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">EC<span>&</span>L</div>
+        <p>Construction materials, gypsum solutions and construction transport — your project supply partner in Kenya.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com" target="_blank" class="footer-social"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://wa.me/254745933132" target="_blank" class="footer-social"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com" target="_blank" class="footer-social"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.tiktok.com" target="_blank" class="footer-social"><i class="fab fa-tiktok"></i></a>
+          <a href="https://www.linkedin.com" target="_blank" class="footer-social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="Products.html">Materials</a></li>
+          <li><a href="Products.html#gypsum">Gypsum</a></li>
+          <li><a href="index.html#transport">Transport</a></li>
+          <li><a href="Services.html">Services</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="index.html#quote">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="Products.html">Construction Materials</a></li>
+          <li><a href="Products.html#gypsum">Gypsum Boards</a></li>
+          <li><a href="Products.html#gypsum">Ceiling Systems</a></li>
+          <li><a href="index.html#transport">Tipper Transport</a></li>
+          <li><a href="index.html#quote">Project Supply</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>Westlands, Nairobi, Kenya</span></div>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i><span>+254 745 933 132</span></div>
+        <div class="footer-contact-item"><i class="fab fa-whatsapp"></i><span><a href="https://wa.me/254745933132" target="_blank" style="color:var(--whatsapp);">WhatsApp Us</a></span></div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>sales@constructionml.com</span></div>
+        <div class="footer-contact-item"><i class="fas fa-clock"></i><span>Mon–Sat: 7:00am – 6:00pm</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 EC&L — Everlast Construction & Logistics. All rights reserved.</p>
+      <p style="color:rgba(255,255,255,0.25);">Quality Materials · Reliable Delivery · One Partner</p>
+    </div>
   </footer>
 
+  <!-- FLOATING WHATSAPP -->
+  <div class="whatsapp-float">
+    <span class="whatsapp-label">Chat on WhatsApp</span>
+    <a href="https://wa.me/254745933132?text=Hello%20EC%26L%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" class="whatsapp-fab">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
   <script>
-    window.addEventListener('scroll', () => {
-      const header = document.querySelector('header');
-      header.classList.toggle('scrolled', window.scrollY > 50);
+    const hamburger = document.getElementById('hamburger');
+    const mainNav   = document.getElementById('mainNav');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mainNav.classList.toggle('active');
     });
-    
-    // Smooth scroll for contact link
-    document.querySelector('a[href="#contact"]').addEventListener('click', function(e) {
-      if (!window.location.href.includes('index.html')) {
-        e.preventDefault();
-        window.location.href = 'index.html#contact';
-      }
+    mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mainNav.classList.remove('active');
+    }));
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').style.boxShadow =
+        window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,0.12)' : '0 2px 20px rgba(0,0,0,0.06)';
     });
   </script>
-
   <script src="script.js"></script>
 </body>
 </html>

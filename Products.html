@@ -3,84 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Materials - Construction Materials & Logistics</title>
+  <title>Construction Materials & Products — EC&L | Nairobi, Kenya</title>
+  <meta name="description" content="Browse EC&L's full range of construction materials, gypsum solutions and building products. Request a quote today.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2A5C82;
-      --secondary: #5CB3B2;
-      --accent: #FF6B6B;
-      --dark: #2C3E50;
-      --light: #F5F6F8;
+      --primary:   #1E3A2F;
+      --accent:    #E07B2A;
+      --secondary: #C39B52;
+      --dark:      #111827;
+      --mid:       #374151;
+      --muted:     #6B7280;
+      --light:     #F9FAFB;
+      --white:     #FFFFFF;
+      --border:    rgba(0,0,0,0.08);
+      --whatsapp:  #25D366;
+      --radius:    14px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.18);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter','Segoe UI',sans-serif; background:var(--light); overflow-x:hidden; color:var(--dark); line-height:1.6; }
 
     body {
       background: var(--light);
       overflow-x: hidden;
     }
 
+    /* ---- HEADER ---- */
     header {
-       position: fixed;
-      width: 100%;
-      padding: 1rem;
-      background: rgba(255,255,255,0.95);
-      z-index: 1000;
-      box-shadow: 0 5px 30px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      top: 0;
-      backdrop-filter: blur(10px);
+      position: fixed; top:0; left:0; right:0; z-index:1000;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 70px;
     }
-
-    header h1 {
-      font-size: 2rem;
-      color: var(--primary);
-      transform: rotate(-5deg);
-      animation: titleTilt 3s ease-in-out infinite alternate;
+    .logo { font-size:1.6rem; font-weight:900; color:var(--primary); letter-spacing:-1px; }
+    .logo span { color:var(--accent); }
+    nav { display:flex; align-items:center; gap:0.2rem; }
+    nav a { color:var(--mid); font-size:0.88rem; font-weight:600; padding:0.5rem 0.8rem; border-radius:8px; transition:all 0.2s; white-space:nowrap; text-decoration:none; }
+    nav a:hover { color:var(--accent); background:rgba(224,123,42,0.07); }
+    .nav-cta { background:var(--accent); color:white !important; padding:0.55rem 1.3rem !important; border-radius:50px !important; font-weight:700 !important; margin-left:0.5rem; box-shadow:0 4px 15px rgba(224,123,42,0.3); }
+    .nav-cta:hover { background:#c96b1d !important; transform:translateY(-1px); color:white !important; }
+    .hamburger { display:none; cursor:pointer; background:transparent; border:0; padding:0.5rem; }
+    .hamburger-box { width:28px; height:22px; display:inline-block; position:relative; }
+    .hamburger-inner,.hamburger-inner::before,.hamburger-inner::after { width:100%; height:3px; background:var(--primary); position:absolute; left:0; border-radius:3px; transition:transform 0.25s, opacity 0.25s; }
+    .hamburger-inner { top:50%; transform:translateY(-50%); }
+    .hamburger-inner::before { content:''; top:-9px; }
+    .hamburger-inner::after  { content:''; top: 9px; }
+    .hamburger.active .hamburger-inner { background:transparent; }
+    .hamburger.active .hamburger-inner::before { transform:translateY(9px) rotate(45deg); }
+    .hamburger.active .hamburger-inner::after  { transform:translateY(-9px) rotate(-45deg); }
+    @media (max-width:900px) {
+      nav { position:fixed; top:70px; right:-100%; width:280px; height:calc(100vh - 70px); background:white; flex-direction:column; align-items:flex-start; padding:2rem 1.5rem; gap:0.3rem; box-shadow:-5px 0 20px rgba(0,0,0,0.12); transition:right 0.3s ease; z-index:999; overflow-y:auto; }
+      nav.active { right:0; }
+      nav a { width:100%; padding:0.85rem 1rem; border-bottom:1px solid rgba(0,0,0,0.06); font-size:1rem; border-radius:0; }
+      .nav-cta { margin:0.5rem 0 0; width:100%; text-align:center; border-radius:50px !important; }
+      .hamburger { display:block; }
     }
-
-    @keyframes titleTilt {
-      from { transform: rotate(-5deg); }
-      to { transform: rotate(5deg); }
-    }
-
-    nav {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    nav a {
-      color: var(--dark);
-      text-decoration: none;
-      position: relative;
-      padding: 0.5rem;
-      transition: all 0.3s;
-      font-weight: 500;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background: var(--accent);
-      transition: width 0.3s;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }  
 
     
     .materials-hero {
@@ -431,28 +416,28 @@
 </head>
 <body>
   <header>
-    <h1 id="rotating-title">EC&L</h1>
-    <button class="hamburger">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
+    <div class="logo">EC<span>&</span>L</div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span class="hamburger-box"><span class="hamburger-inner"></span></span>
     </button>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="#gypsum">Gypsum</a>
-        <a href="Products.html">Products</a>
-        <a href="Services.html">Services</a>
-        <a href="about.html">About</a>
-        <a href="#contact">Contact</a>
-
-    <div class="cart-icon-header" onclick="goToCart()">
-    <svg viewBox="0 0 24 24" width="24" height="24">
-        <path fill="currentColor" d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
-    </svg>
-    <span class="cart-count">0</span>
+    <nav id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="Products.html">Materials</a>
+      <a href="#gypsum">Gypsum</a>
+      <a href="index.html#transport">Transport</a>
+      <a href="Services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="index.html#quote">Contact</a>
+      <a href="index.html#quote" class="nav-cta">GET A QUOTE</a>
     </nav>
-</div>
-</header>
+  </header>
+
+  <!-- FLOATING WHATSAPP -->
+  <div style="position:fixed;bottom:2rem;right:2rem;z-index:9999;">
+    <a href="https://wa.me/254745933132?text=Hello%20EC%26L%2C%20I%20would%20like%20to%20enquire%20about%20a%20product." target="_blank" style="width:55px;height:55px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:white;box-shadow:0 6px 25px rgba(37,211,102,0.5);text-decoration:none;" title="Chat on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
 
   <section class="materials-hero">
     <div>
@@ -2267,23 +2252,72 @@
 
   <!-- Add other material categories following the same structure -->
 
-  <footer>
-    <p>&copy; 2025 EC&L • Building Better Futures</p>
+  <!-- FOOTER -->
+  <footer style="background:#0d1a12;color:white;padding:4rem 2rem 2rem;">
+    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;margin-bottom:3rem;">
+      <div>
+        <div class="logo" style="font-size:1.8rem;margin-bottom:1rem;">EC<span>&</span>L</div>
+        <p style="color:rgba(255,255,255,0.55);font-size:0.88rem;line-height:1.7;max-width:260px;margin-bottom:1.5rem;">Construction materials, gypsum solutions and construction transport — your project supply partner in Kenya.</p>
+        <div style="display:flex;gap:0.7rem;flex-wrap:wrap;">
+          <a href="https://www.facebook.com" target="_blank" style="width:38px;height:38px;background:rgba(255,255,255,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:0.9rem;"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://wa.me/254745933132" target="_blank" style="width:38px;height:38px;background:rgba(255,255,255,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:0.9rem;"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com" target="_blank" style="width:38px;height:38px;background:rgba(255,255,255,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:0.9rem;"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.tiktok.com" target="_blank" style="width:38px;height:38px;background:rgba(255,255,255,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:0.9rem;"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:1.2rem;">Quick Links</h4>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.6rem;">
+          <li><a href="index.html" style="color:rgba(255,255,255,0.55);font-size:0.87rem;">Home</a></li>
+          <li><a href="Products.html" style="color:rgba(255,255,255,0.55);font-size:0.87rem;">Materials</a></li>
+          <li><a href="#gypsum" style="color:rgba(255,255,255,0.55);font-size:0.87rem;">Gypsum</a></li>
+          <li><a href="index.html#transport" style="color:rgba(255,255,255,0.55);font-size:0.87rem;">Transport</a></li>
+          <li><a href="about.html" style="color:rgba(255,255,255,0.55);font-size:0.87rem;">About Us</a></li>
+          <li><a href="index.html#quote" style="color:rgba(255,255,255,0.55);font-size:0.87rem;">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:1.2rem;">Products</h4>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.6rem;">
+          <li><a href="#gypsum" style="color:rgba(255,255,255,0.55);font-size:0.87rem;">Gypsum Boards</a></li>
+          <li><a href="#gypsum" style="color:rgba(255,255,255,0.55);font-size:0.87rem;">Ceiling Systems</a></li>
+          <li><a href="Products.html" style="color:rgba(255,255,255,0.55);font-size:0.87rem;">Cement & Steel</a></li>
+          <li><a href="Products.html" style="color:rgba(255,255,255,0.55);font-size:0.87rem;">Sand & Ballast</a></li>
+          <li><a href="Products.html" style="color:rgba(255,255,255,0.55);font-size:0.87rem;">Roofing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:1.2rem;">Contact Us</h4>
+        <div style="display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:0.9rem;"><i class="fas fa-map-marker-alt" style="color:var(--accent);margin-top:0.15rem;"></i><span style="color:rgba(255,255,255,0.6);font-size:0.86rem;">Westlands, Nairobi, Kenya</span></div>
+        <div style="display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:0.9rem;"><i class="fas fa-phone" style="color:var(--accent);"></i><span style="color:rgba(255,255,255,0.6);font-size:0.86rem;">+254 745 933 132</span></div>
+        <div style="display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:0.9rem;"><i class="fab fa-whatsapp" style="color:var(--accent);"></i><span style="color:rgba(255,255,255,0.6);font-size:0.86rem;"><a href="https://wa.me/254745933132" target="_blank" style="color:#25D366;">WhatsApp Us</a></span></div>
+        <div style="display:flex;align-items:flex-start;gap:0.75rem;"><i class="fas fa-clock" style="color:var(--accent);"></i><span style="color:rgba(255,255,255,0.6);font-size:0.86rem;">Mon–Sat: 7:00am – 6:00pm</span></div>
+      </div>
+    </div>
+    <div style="max-width:1200px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+      <p style="color:rgba(255,255,255,0.35);font-size:0.8rem;">© 2025 EC&L — Everlast Construction & Logistics. All rights reserved.</p>
+      <p style="color:rgba(255,255,255,0.25);font-size:0.8rem;">Quality Materials · Reliable Delivery · One Partner</p>
+    </div>
   </footer>
 
   <script>
-
-    // Smooth scroll for contact link
-    document.querySelector('a[href="#contact"]').addEventListener('click', function(e) {
-      // Check if the user is NOT on index.html
-      if (!window.location.href.includes('index.html')) {
-        e.preventDefault(); // Stop the default link behavior
-        window.location.href = 'index.html#contact'; // Redirect to index.html#contact
-      }
-      
+    // Nav hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mainNav   = document.getElementById('mainNav');
+    if (hamburger && mainNav) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mainNav.classList.toggle('active');
+      });
+      mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mainNav.classList.remove('active');
+      }));
+    }
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').style.boxShadow =
+        window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,0.12)' : '0 2px 20px rgba(0,0,0,0.06)';
     });
-    
-    
   </script>
 
   <!-- search bar functionality in materials -->
