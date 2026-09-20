@@ -232,6 +232,11 @@
     .footer-bottom p { color:rgba(255,255,255,0.35); font-size:0.8rem; }
     @media (max-width:900px) { .footer-inner { grid-template-columns:1fr 1fr; gap:2rem; } }
     @media (max-width:500px) { .footer-inner { grid-template-columns:1fr; } }
+    @media (max-width:768px) {
+      footer { padding-bottom:6rem; }
+      .footer-bottom { flex-direction:column; text-align:center; gap:0.4rem; }
+      .footer-bottom p { font-size:0.75rem; }
+    }
 
     /* ---- WHATSAPP FLOAT ---- */
     .whatsapp-float { position:fixed; bottom:2rem; right:2rem; z-index:9999; display:flex; align-items:center; gap:0.7rem; }
