@@ -388,7 +388,11 @@
       }
     }
 
-
+    /* ---- FOOTER DIAGONAL ---- */
+    footer {
+      clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+      padding-top: 7rem !important; /* extra top space so content clears the slant */
+    }
 
     @media (max-width: 768px) {
       nav {
@@ -2244,7 +2248,7 @@
   <!-- Add other material categories following the same structure -->
 
   <!-- FOOTER -->
-  <footer style="background:#070B18;color:white;padding:4rem 2rem 2rem;">
+  <footer style="background:#070B18;color:white;padding:7rem 2rem 2rem;">
     <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;margin-bottom:3rem;">
       <div>
         <div class="logo" style="font-size:1.8rem;margin-bottom:1rem;">EC<span>&</span>L</div>
