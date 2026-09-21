@@ -2198,26 +2198,14 @@
   </footer>
 
   <script>
-    // Nav hamburger
-    const hamburger = document.getElementById('hamburger');
-    const mainNav   = document.getElementById('mainNav');
-    if (hamburger && mainNav) {
-      hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        mainNav.classList.toggle('active');
-      });
-      mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mainNav.classList.remove('active');
-      }));
-    }
+    // Scroll shadow on header
     window.addEventListener('scroll', () => {
       document.querySelector('header').style.boxShadow =
         window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,0.12)' : '0 2px 20px rgba(0,0,0,0.06)';
     });
   </script>
 
-  <!-- search bar functionality in materials -->
+  <!-- search bar / cart / hamburger functionality -->
    <script src="script.js"></script>
 
   <script>
