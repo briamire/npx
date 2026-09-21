@@ -133,7 +133,7 @@
       .hamburger { display: block; }
       nav {
         position: fixed;
-        top: 70px; right: -100%;
+        top: 70px; right: 0;
         width: 280px;
         height: calc(100vh - 70px);
         background: white;
@@ -142,11 +142,12 @@
         padding: 2rem 1.5rem;
         gap: 0.3rem;
         box-shadow: -5px 0 20px rgba(0,0,0,0.12);
-        transition: right 0.3s ease;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
         z-index: 999;
         overflow-y: auto;
       }
-      nav.active { right: 0; }
+      nav.active { transform: translateX(0); }
       nav a {
         width: 100%;
         padding: 0.85rem 1rem;
@@ -1058,7 +1059,7 @@
        HEADER
   ============================================================ -->
   <header>
-    <div class="logo">EC<span>&</span>L</div>
+    <a href="index.html" style="text-decoration:none;"><div class="logo">EC<span>&</span>L</div></a>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span class="hamburger-box"><span class="hamburger-inner"></span></span>
     </button>
