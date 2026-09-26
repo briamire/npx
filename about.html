@@ -9,21 +9,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary:   #1a1a2e;
-      --accent:    #FF6B00;
-      --secondary: #F5C518;
-      --dark:      #0a0a1a;
-      --mid:       #2d3748;
+      --primary:   #482370;
+      --accent:    #8B00FF;
+      --secondary: #7B00DD;
+      --dark:      #1F2937;
+      --mid:       #4B5563;
       --muted:     #718096;
-      --light:     #f7f9fc;
+      --light:     #F5F6F8;
       --white:     #ffffff;
       --border:    rgba(0,0,0,0.08);
       --whatsapp:  #25D366;
-      --highlight: #00d4ff;
+      --highlight: #D500FF;
+      --lavender:  #E5D9F2;
       --radius:    14px;
-      --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
-      --shadow-md: 0 8px 30px rgba(0,0,0,0.15);
-      --shadow-lg: 0 20px 60px rgba(0,0,0,0.22);
+      --shadow-sm: 0 2px 8px rgba(72,35,112,0.08);
+      --shadow-md: 0 8px 30px rgba(72,35,112,0.18);
+      --shadow-lg: 0 20px 60px rgba(72,35,112,0.28);
     }
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; overflow-x:hidden; }
@@ -43,9 +44,9 @@
     .logo span { color:var(--accent); }
     nav { display:flex; align-items:center; gap:0.2rem; }
     nav a { color:var(--mid); font-size:0.88rem; font-weight:600; padding:0.5rem 0.8rem; border-radius:8px; transition:all 0.2s; white-space:nowrap; }
-    nav a:hover { color:var(--accent); background:rgba(224,123,42,0.07); }
-    .nav-cta { background:var(--accent); color:white !important; padding:0.55rem 1.3rem !important; border-radius:50px !important; font-weight:700 !important; margin-left:0.5rem; box-shadow:0 4px 15px rgba(224,123,42,0.3); }
-    .nav-cta:hover { background:#c96b1d !important; transform:translateY(-1px); color:white !important; }
+    nav a:hover { color:var(--accent); background:rgba(139,0,255,0.07); }
+    .nav-cta { background:var(--accent); color:white !important; padding:0.55rem 1.3rem !important; border-radius:50px !important; font-weight:700 !important; margin-left:0.5rem; box-shadow:0 4px 15px rgba(139,0,255,0.35); }
+    .nav-cta:hover { background:var(--secondary) !important; transform:translateY(-1px); color:white !important; }
     .hamburger { display:none; cursor:pointer; background:transparent; border:0; padding:0.5rem; }
     .hamburger-box { width:28px; height:22px; display:inline-block; position:relative; }
     .hamburger-inner,.hamburger-inner::before,.hamburger-inner::after { width:100%; height:3px; background:var(--primary); position:absolute; left:0; border-radius:3px; transition:transform 0.25s, opacity 0.25s; }
@@ -79,7 +80,7 @@
     .page-hero-btns { display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.8rem; }
     .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.9rem 2rem; border-radius:50px; font-weight:700; font-size:0.93rem; cursor:pointer; transition:all 0.3s; border:none; font-family:inherit; }
     .btn-orange { background:var(--accent); color:white; box-shadow:0 6px 20px rgba(224,123,42,0.35); }
-    .btn-orange:hover { background:#c96b1d; transform:translateY(-2px); color:white; }
+    .btn-orange:hover { background:var(--secondary); transform:translateY(-2px); color:white; }
     .btn-whatsapp { background:var(--whatsapp); color:white; }
     .btn-whatsapp:hover { background:#1ebe5d; transform:translateY(-2px); color:white; }
 
@@ -152,7 +153,7 @@
     }
 
     /* CTA Strip */
-    .cta-strip { background:linear-gradient(135deg, var(--accent), #c96b1d); color:white; text-align:center; padding:3.5rem 2rem; }
+    .cta-strip { background:linear-gradient(135deg, var(--accent), #3500A8); color:white; text-align:center; padding:3.5rem 2rem; }
     .cta-strip h2 { font-size:2rem; font-weight:800; margin-bottom:0.6rem; }
     .cta-strip p { color:rgba(255,255,255,0.85); margin-bottom:1.8rem; font-size:1rem; }
     .cta-strip-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
@@ -162,7 +163,7 @@
     .btn-ghost:hover { background:rgba(255,255,255,0.1); }
 
     /* ---- FOOTER ---- */
-    footer { background:#070B18; color:white; padding:7rem 2rem 2rem; clip-path:polygon(0 10%, 100% 0, 100% 100%, 0 100%); }
+    footer { background:linear-gradient(135deg,#3500A8 0%,#7B00DD 50%,#D500FF 100%); color:white; padding:7rem 2rem 2rem; clip-path:polygon(0 10%, 100% 0, 100% 100%, 0 100%); }
     .footer-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1.5fr; gap:3rem; margin-bottom:3rem; }
     .footer-brand .logo { font-size:1.8rem; margin-bottom:1rem; }
     .footer-brand p { color:rgba(255,255,255,0.55); font-size:0.88rem; line-height:1.7; max-width:260px; margin-bottom:1.5rem; }
